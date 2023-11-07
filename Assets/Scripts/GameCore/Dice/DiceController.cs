@@ -44,15 +44,8 @@ namespace GameCore.Dice
 
             for (int i = 0; i < _facesRoot.Length; i++)
             {
-                var faceRoot = _facesRoot[i];
                 var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
-                var diceFaceTransform = diceFaceInstance.transform;
-                diceFaceTransform.position = faceRoot.position;
-                diceFaceTransform.rotation = faceRoot.rotation;
-                diceFaceTransform.SetParent(faceRoot.parent, worldPositionStays: false);
-                _facesRoot[i] = diceFaceTransform;
-                _diceFaces[i] = diceFaceInstance;
-                faceRoot.gameObject.SetActive(false);
+                diceFaceInstance.transform.SetParent(_facesRoot[i], worldPositionStays: false);
             }
         }
 
