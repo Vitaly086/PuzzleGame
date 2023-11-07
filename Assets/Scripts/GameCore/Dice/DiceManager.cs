@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -6,10 +8,9 @@ namespace GameCore.Dice
     public class DiceManager : MonoBehaviour
     {
         [SerializeField]
-        private int _diceValue = 1;
-        [SerializeField]
-        private Transform _spawnPoint;
-        
+        private List<Transform> _spawnPoints;
+
+        private readonly HashSet<int> _usedSpawnPoints = new HashSet<int>();
         private DiceFactory _diceFactory;
 
 
@@ -19,17 +20,37 @@ namespace GameCore.Dice
             _diceFactory = diceFactory;
         }
 
-        public void PushDice()
+        public async void PushDice() //todo изменить тип возвращаемого значения после того как уберем с нажатия кнопки.
         {
-            var dice = SpawnDice();
-            dice.Push();
+            var diceControllers = _diceFactory.GetCubes(false);
+            _usedSpawnPoints.Clear();
+
+            foreach (var diceController in diceControllers)
+            {
+                SpawnDice(diceController);
+                await UniTask.WaitForSeconds(0.2f);
+            }
         }
 
-        private DiceController SpawnDice()
+        private void SpawnDice(DiceController diceController)
         {
-            var dice = _diceFactory.GetCube(_diceValue);
-            dice.transform.position = _spawnPoint.position;
-            return dice;
+            var spawnIndex = GetUniqueSpawnPointIndex();
+            var spawnPoint = _spawnPoints[spawnIndex];
+            diceController.transform.position = spawnPoint.position;
+            diceController.gameObject.SetActive(true);
+            diceController.Push();
+        }
+
+        private int GetUniqueSpawnPointIndex()
+        {
+            int index;
+            do
+            {
+                index = Random.Range(0, _spawnPoints.Count);
+            } while (_usedSpawnPoints.Contains(index) && _usedSpawnPoints.Count < _spawnPoints.Count);
+
+            _usedSpawnPoints.Add(index);
+            return index;
         }
     }
 }

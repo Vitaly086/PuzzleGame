@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Zenject;
 
@@ -7,24 +6,25 @@ namespace GameCore.Dice
     public class DiceFactory
     {
         private readonly DiContainer _container;
-        private readonly Dictionary<int, DiceController> _cubePrefabs;
+        private readonly DiceHandConfigProvider _diceHandConfigProvider;
 
-        public DiceFactory(DiContainer container, Dictionary<int, DiceController> cubePrefabs)
+        public DiceFactory(DiContainer container, DiceHandConfigProvider diceHandConfigProvider)
         {
             _container = container;
-            _cubePrefabs = cubePrefabs;
+            _diceHandConfigProvider = diceHandConfigProvider;
         }
 
-        public DiceController GetCube(int value)
+        public IEnumerable<DiceController> GetCubes(bool isActive = true)
         {
-            if (!_cubePrefabs.TryGetValue(value, out var prefab))
+            var dices = new List<DiceController>();
+            foreach (var diceController in _diceHandConfigProvider.DicePrefabs)
             {
-                throw new ArgumentException($"{typeof(DiceController)} for value {value} not found!");
+                var dice = _container.InstantiatePrefabForComponent<DiceController>(diceController);
+                dice.gameObject.SetActive(isActive);
+                dices.Add(dice);
             }
 
-            var dice = _container.InstantiatePrefabForComponent<DiceController>(prefab);
-
-            return dice;
+            return dices;
         }
     }
 }

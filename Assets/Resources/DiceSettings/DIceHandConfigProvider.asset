@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ae36a0063db4a1d800d0287c78ba4a0, type: 3}
-  m_Name: DicePrefab-1
+  m_Name: DIceHandConfigProvider
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 6704992457316925572, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}
-  <Value>k__BackingField: 1
+  <DicePrefabs>k__BackingField:
+  - {fileID: 6704992457316925572, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}
+  - {fileID: 6704992457316925572, guid: 8451e75be3e5f42cd998dbc118c23762, type: 3}
+  - {fileID: 6704992457316925572, guid: a21cd8927bd614c4ea4421b1e85646e9, type: 3}

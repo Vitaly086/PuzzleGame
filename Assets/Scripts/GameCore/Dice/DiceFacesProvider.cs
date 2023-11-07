@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameCore.Dice
 {
-    [CreateAssetMenu(fileName = "DiceFacesProvider", menuName = "Dice/Faces Provider")]
+    [CreateAssetMenu(fileName = "DiceFacesProvider", menuName = "Dice/DiceFacesProvider")]
     public class DiceFacesProvider : ScriptableObject
     {
         [SerializeField]

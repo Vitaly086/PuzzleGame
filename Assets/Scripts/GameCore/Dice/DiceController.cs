@@ -2,7 +2,6 @@ using System;
 using DefaultNamespace;
 using Zenject;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GameCore.Dice
 {
@@ -21,7 +20,8 @@ namespace GameCore.Dice
 
 
         [Inject]
-        private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings, DicePhysicSettings dicePhysicSettings, ITarget target)
+        private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings,
+            DicePhysicSettings dicePhysicSettings, ITarget target)
         {
             _diceFaceFactory = diceFaceFactory;
             _dicePhysicSettings = dicePhysicSettings;
@@ -38,20 +38,19 @@ namespace GameCore.Dice
         {
             if (_facesRoot.Length != diceFacesValues.Length)
             {
-                throw new IndexOutOfRangeException("The number of dice face values does not match the number of face roots.");
+                throw new IndexOutOfRangeException(
+                    "The number of dice face values does not match the number of face roots.");
             }
-            
+
             for (int i = 0; i < _facesRoot.Length; i++)
             {
                 var faceRoot = _facesRoot[i];
-                //var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
-                var randomValue = Random.Range(1, 100);
-                var diceFaceInstance = _diceFaceFactory.GetFace(randomValue);
+                var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
                 var diceFaceTransform = diceFaceInstance.transform;
                 diceFaceTransform.position = faceRoot.position;
                 diceFaceTransform.rotation = faceRoot.rotation;
                 diceFaceTransform.SetParent(faceRoot.parent, worldPositionStays: false);
-                _facesRoot[i] = diceFaceTransform; 
+                _facesRoot[i] = diceFaceTransform;
                 _diceFaces[i] = diceFaceInstance;
                 faceRoot.gameObject.SetActive(false);
             }

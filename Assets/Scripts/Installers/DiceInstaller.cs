@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using GameCore.Dice;
 using UnityEngine;
 using Zenject;
@@ -10,7 +9,7 @@ namespace Installers
         [SerializeField]
         private DicePhysicSettings _dicePhysicSettings;
         [SerializeField]
-        private List<DicePrefab> _dicePrefabAssets;
+        private DiceHandConfigProvider _diceHandConfigProvider;
         [SerializeField]
         private Target _target;
         [SerializeField]
@@ -27,13 +26,7 @@ namespace Installers
 
         private void BindDiceSetup()
         {
-            var prefabsDictionary = new Dictionary<int, DiceController>();
-            foreach (var dicePrefabAsset in _dicePrefabAssets)
-            {
-                prefabsDictionary.Add(dicePrefabAsset.Value, dicePrefabAsset.Prefab);
-            }
-
-            Container.Bind<DiceFactory>().AsSingle().WithArguments(prefabsDictionary);
+            Container.Bind<DiceFactory>().AsSingle().WithArguments(_diceHandConfigProvider);
             Container.BindInstance(_dicePhysicSettings).AsTransient();
         }
 
