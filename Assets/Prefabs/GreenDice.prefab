@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3545918746491031362}
   - component: {fileID: 6763194743879384785}
   - component: {fileID: 8321208812621606879}
-  - component: {fileID: 6704992457316925572}
+  - component: {fileID: 2941536754827404259}
+  - component: {fileID: -3456709488728155217}
   m_Layer: 0
   m_Name: GreenDice
   m_TagString: Untagged
@@ -140,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6704992457316925572
+--- !u!114 &2941536754827404259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,6 +160,18 @@ MonoBehaviour:
   - {fileID: 4318131054556519531}
   - {fileID: 8054004408230265857}
   - {fileID: 2415538915859931429}
+--- !u!114 &-3456709488728155217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545879115191340051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc22d2043c2431d8405200b51c4f6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4828756363568525929
 GameObject:
   m_ObjectHideFlags: 0

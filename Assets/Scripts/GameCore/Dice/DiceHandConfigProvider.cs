@@ -6,6 +6,6 @@ namespace GameCore.Dice
     public class DiceHandConfigProvider : ScriptableObject
     {
         [field: SerializeField]
-        public DiceController[] DicePrefabs { get; private set; }
+        public Dice[] DicePrefabs { get; private set; }
     }
 }

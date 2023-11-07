@@ -5,12 +5,12 @@ using Zenject;
 
 namespace GameCore.Dice
 {
-    public class DiceManager : MonoBehaviour
+    public class DicePusher : MonoBehaviour
     {
         [SerializeField]
         private List<Transform> _spawnPoints;
 
-        private readonly HashSet<int> _usedSpawnPoints = new HashSet<int>();
+        private readonly HashSet<int> _usedSpawnPoints = new();
         private DiceFactory _diceFactory;
 
 
@@ -32,7 +32,7 @@ namespace GameCore.Dice
             }
         }
 
-        private void SpawnDice(DiceController diceController)
+        private void SpawnDice(PhysicDice diceController)
         {
             var spawnIndex = GetUniqueSpawnPointIndex();
             var spawnPoint = _spawnPoints[spawnIndex];

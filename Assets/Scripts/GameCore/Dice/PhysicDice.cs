@@ -1,29 +1,20 @@
-using System;
-using System.Linq;
-using DefaultNamespace;
-using Zenject;
 using UnityEngine;
+using Zenject;
 
 namespace GameCore.Dice
 {
-    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
-    public class DiceController : MonoBehaviour
+    public class PhysicDice : MonoBehaviour
     {
-        [SerializeField]
-        private Transform[] _facesRoot = new Transform[GlobalConstants.DICE_FACE_COUNT];
-
         private DicePhysicSettings _dicePhysicSettings;
         private Rigidbody _rigidbody;
         private BoxCollider _collider;
         private ITarget _target;
         private DiceFaceFactory _diceFaceFactory;
-
-
+        
         [Inject]
         private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings,
             DicePhysicSettings dicePhysicSettings, ITarget target)
         {
-            _diceFaceFactory = diceFaceFactory;
             _dicePhysicSettings = dicePhysicSettings;
             _target = target;
 
@@ -31,22 +22,6 @@ namespace GameCore.Dice
             _collider = GetComponent<BoxCollider>();
 
             ApplyPhysicsSettings();
-            CreateDiceFaces(diceFacesSettings.DiceFaces.Select(face => face.Value).ToArray());
-        }
-
-        private void CreateDiceFaces(int[] diceFacesValues)
-        {
-            if (_facesRoot.Length != diceFacesValues.Length)
-            {
-                throw new InvalidOperationException(
-                    "The number of dice face values does not match the number of face roots.");
-            }
-
-            for (int i = 0; i < _facesRoot.Length; i++)
-            {
-                var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
-                diceFaceInstance.transform.SetParent(_facesRoot[i], worldPositionStays: false);
-            }
         }
 
         public void Push()
