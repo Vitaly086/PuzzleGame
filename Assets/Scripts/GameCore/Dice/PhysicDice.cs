@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -5,12 +6,23 @@ namespace GameCore.Dice
 {
     public class PhysicDice : MonoBehaviour
     {
+        public Action<PhysicDice> Stopped;
+
+        private float
+            _stoppedThreshold = 0.1f; // Порог скорости, ниже которого считаем, что кубик перестал двигаться и вращаться
+
+        [SerializeField]
+        private float _stoppedTimeThreshold = 0.5f; // Время, в течение которого скорость должна быть ниже порога
+
+        private float _timeBelowThreshold;
+
         private DicePhysicSettings _dicePhysicSettings;
         private Rigidbody _rigidbody;
         private BoxCollider _collider;
         private ITarget _target;
         private DiceFaceFactory _diceFaceFactory;
-        
+        private bool _isStopped;
+
         [Inject]
         private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings,
             DicePhysicSettings dicePhysicSettings, ITarget target)
@@ -24,6 +36,28 @@ namespace GameCore.Dice
             ApplyPhysicsSettings();
         }
 
+        private void Update()
+        {
+            if (_isStopped)
+            {
+                return;
+            }
+
+            if (IsFullyStopped())
+            {
+                _timeBelowThreshold += Time.deltaTime; // Накапливаем время, в течение которого скорость мала
+                if (_timeBelowThreshold >= _stoppedTimeThreshold)
+                {
+                    Stopped?.Invoke(this);
+                    _isStopped = true;
+                }
+            }
+            else
+            {
+                _timeBelowThreshold = 0f; // Сбрасываем таймер
+            }
+        }
+
         public void Push()
         {
             var direction = (_target.Position - transform.position).normalized;
@@ -34,6 +68,8 @@ namespace GameCore.Dice
 
             _rigidbody.isKinematic = false;
             _rigidbody.AddForce(force, ForceMode.Impulse);
+
+            _isStopped = false;
         }
 
         private void ApplyPhysicsSettings()
@@ -49,5 +85,12 @@ namespace GameCore.Dice
                 _collider.material = diceMaterial;
             }
         }
+        
+        private bool IsFullyStopped()
+        {
+            return _rigidbody.velocity.magnitude < _stoppedThreshold &&
+                   _rigidbody.angularVelocity.magnitude < _stoppedThreshold;
+        }
+
     }
 }

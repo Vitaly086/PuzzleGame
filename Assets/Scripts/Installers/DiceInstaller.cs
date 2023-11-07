@@ -16,7 +16,7 @@ namespace Installers
         private DiceFacesProvider _diceFacesProvider;
         [SerializeField]
         private DiceFacesSettings _diceFacesSettings;
-
+        
         public override void InstallBindings()
         {
             BindDiceSetup();

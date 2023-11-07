@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DIceHandConfigProvider
   m_EditorClassIdentifier: 
   <DicePrefabs>k__BackingField:
-  - {fileID: 6704992457316925572, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}
+  - {fileID: 8832856236650073278, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}

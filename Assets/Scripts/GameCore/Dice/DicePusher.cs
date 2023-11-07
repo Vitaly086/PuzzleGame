@@ -13,32 +13,32 @@ namespace GameCore.Dice
         private readonly HashSet<int> _usedSpawnPoints = new();
         private DiceFactory _diceFactory;
 
-
         [Inject]
         private void Construct(DiceFactory diceFactory)
         {
             _diceFactory = diceFactory;
         }
 
-        public async void PushDice() //todo изменить тип возвращаемого значения после того как уберем с нажатия кнопки.
+        public IEnumerable<PhysicDice> PushDice()
         {
-            var diceControllers = _diceFactory.GetCubes(false);
+            var dices = _diceFactory.GetCubes(false);
             _usedSpawnPoints.Clear();
 
-            foreach (var diceController in diceControllers)
+            foreach (var dice in dices)
             {
-                SpawnDice(diceController);
-                await UniTask.WaitForSeconds(0.2f);
+                SpawnDice(dice);
             }
+
+            return dices;
         }
 
-        private void SpawnDice(PhysicDice diceController)
+        private void SpawnDice(PhysicDice dice)
         {
             var spawnIndex = GetUniqueSpawnPointIndex();
             var spawnPoint = _spawnPoints[spawnIndex];
-            diceController.transform.position = spawnPoint.position;
-            diceController.gameObject.SetActive(true);
-            diceController.Push();
+            dice.transform.position = spawnPoint.position;
+            dice.gameObject.SetActive(true);
+            dice.Push();
         }
 
         private int GetUniqueSpawnPointIndex()

@@ -9,7 +9,7 @@ namespace Score
         [SerializeField] 
         private TextMeshProUGUI _valueLabel;
         [SerializeField] 
-        private float _scoreChangingDuration = 0.8f;
+        private float _scoreChangingDuration = 0.2f;
 
         private Coroutine _scoreCoroutine;
         
