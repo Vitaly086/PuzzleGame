@@ -54,8 +54,6 @@ public class DiceRoller : MonoBehaviour
         }
 
         var faceValue = dice.DiceFacesSettings.GetValue(faceIndex);
-        Debug.Log(faceValue);
-        
         _scoreController.SetScore(faceValue);
     }
 
