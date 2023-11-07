@@ -38,7 +38,7 @@ namespace GameCore.Dice
         {
             if (_facesRoot.Length != diceFacesValues.Length)
             {
-                throw new IndexOutOfRangeException(
+                throw new InvalidOperationException(
                     "The number of dice face values does not match the number of face roots.");
             }
 
