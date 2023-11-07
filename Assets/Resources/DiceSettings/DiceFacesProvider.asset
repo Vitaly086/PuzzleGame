@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf8f0ac1d034d41a0ae3647667ca2d5, type: 3}
+  m_Name: DiceFacesProvider
+  m_EditorClassIdentifier: 
+  _uniqueFacePrefabs:
+  - {fileID: -3124108594173692589, guid: fc1a972c3c42ab2409e42d15d424bd97, type: 3}
+  - {fileID: -5985753563611764858, guid: 2485450ca6e30a348948ca8aee87437f, type: 3}
+  - {fileID: -2382966812358044387, guid: 704a96674d399eb43999536401c5367a, type: 3}
+  - {fileID: -7765464351365338731, guid: 905ae2c921c212941a3a5ed7eec7da60, type: 3}
+  - {fileID: -7661254725828275153, guid: f963ca8a3a85bb34aa0f85dc4c3801af, type: 3}
+  - {fileID: -5315843207445453541, guid: 04a3778e2444e4b40a39cd1ab8b5210e, type: 3}
+  - {fileID: 1003239048430409639, guid: a413f10ea9370d74f88d6334d5732ea5, type: 3}
+  - {fileID: -2892236112912391426, guid: d56c5a1896c73334591a11a87a381a62, type: 3}
+  - {fileID: -2177384237402837317, guid: 24d6a7b4b20c177488ac773e977447b9, type: 3}
+  _commonFacePrefab: {fileID: -941489713325918603, guid: 055d06af9657ba4459d71f9f4eae85d9, type: 3}

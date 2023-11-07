@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f82fbcef14e4e87945a4e7bd8f649dd, type: 3}
-  m_Name: DiceSettings
+  m_Name: DicePhysicSettings
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 5
-  <Mass>k__BackingField: 10
-  <Bounciness>k__BackingField: 1
+  <Speed>k__BackingField: 3
+  <Mass>k__BackingField: 1
+  <Bounciness>k__BackingField: 0.152

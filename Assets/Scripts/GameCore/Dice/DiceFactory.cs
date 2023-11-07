@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace GameCore.Dice
@@ -8,22 +7,22 @@ namespace GameCore.Dice
     public class DiceFactory
     {
         private readonly DiContainer _container;
-        private readonly Dictionary<int, Dice> _cubePrefabs;
+        private readonly Dictionary<int, DiceController> _cubePrefabs;
 
-        public DiceFactory(DiContainer container, Dictionary<int, Dice> cubePrefabs)
+        public DiceFactory(DiContainer container, Dictionary<int, DiceController> cubePrefabs)
         {
             _container = container;
             _cubePrefabs = cubePrefabs;
         }
 
-        public Dice GetCube(int value)
+        public DiceController GetCube(int value)
         {
             if (!_cubePrefabs.TryGetValue(value, out var prefab))
             {
-                throw new ArgumentException($"{typeof(Dice)} for value {value} not found!");
+                throw new ArgumentException($"{typeof(DiceController)} for value {value} not found!");
             }
 
-            var dice = _container.InstantiatePrefabForComponent<Dice>(prefab);
+            var dice = _container.InstantiatePrefabForComponent<DiceController>(prefab);
 
             return dice;
         }
