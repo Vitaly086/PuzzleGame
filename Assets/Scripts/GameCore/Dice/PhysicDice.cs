@@ -1,29 +1,32 @@
 using System;
-using System.Linq;
-using DefaultNamespace;
-using Zenject;
 using UnityEngine;
+using Zenject;
 
 namespace GameCore.Dice
 {
-    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
-    public class DiceController : MonoBehaviour
+    public class PhysicDice : MonoBehaviour
     {
+        public Action<PhysicDice> Stopped;
+
+        private float
+            _stoppedThreshold = 0.1f; // Порог скорости, ниже которого считаем, что кубик перестал двигаться и вращаться
+
         [SerializeField]
-        private Transform[] _facesRoot = new Transform[GlobalConstants.DICE_FACE_COUNT];
+        private float _stoppedTimeThreshold = 0.5f; // Время, в течение которого скорость должна быть ниже порога
+
+        private float _timeBelowThreshold;
 
         private DicePhysicSettings _dicePhysicSettings;
         private Rigidbody _rigidbody;
         private BoxCollider _collider;
         private ITarget _target;
         private DiceFaceFactory _diceFaceFactory;
-
+        private bool _isStopped;
 
         [Inject]
         private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings,
             DicePhysicSettings dicePhysicSettings, ITarget target)
         {
-            _diceFaceFactory = diceFaceFactory;
             _dicePhysicSettings = dicePhysicSettings;
             _target = target;
 
@@ -31,21 +34,27 @@ namespace GameCore.Dice
             _collider = GetComponent<BoxCollider>();
 
             ApplyPhysicsSettings();
-            CreateDiceFaces(diceFacesSettings.DiceFaces.Select(face => face.Value).ToArray());
         }
 
-        private void CreateDiceFaces(int[] diceFacesValues)
+        private void Update()
         {
-            if (_facesRoot.Length != diceFacesValues.Length)
+            if (_isStopped)
             {
-                throw new InvalidOperationException(
-                    "The number of dice face values does not match the number of face roots.");
+                return;
             }
 
-            for (int i = 0; i < _facesRoot.Length; i++)
+            if (IsFullyStopped())
             {
-                var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
-                diceFaceInstance.transform.SetParent(_facesRoot[i], worldPositionStays: false);
+                _timeBelowThreshold += Time.deltaTime; // Накапливаем время, в течение которого скорость мала
+                if (_timeBelowThreshold >= _stoppedTimeThreshold)
+                {
+                    Stopped?.Invoke(this);
+                    _isStopped = true;
+                }
+            }
+            else
+            {
+                _timeBelowThreshold = 0f; // Сбрасываем таймер
             }
         }
 
@@ -59,6 +68,8 @@ namespace GameCore.Dice
 
             _rigidbody.isKinematic = false;
             _rigidbody.AddForce(force, ForceMode.Impulse);
+
+            _isStopped = false;
         }
 
         private void ApplyPhysicsSettings()
@@ -74,5 +85,12 @@ namespace GameCore.Dice
                 _collider.material = diceMaterial;
             }
         }
+        
+        private bool IsFullyStopped()
+        {
+            return _rigidbody.velocity.magnitude < _stoppedThreshold &&
+                   _rigidbody.angularVelocity.magnitude < _stoppedThreshold;
+        }
+
     }
 }

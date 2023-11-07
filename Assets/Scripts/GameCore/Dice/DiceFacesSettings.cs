@@ -9,14 +9,14 @@ namespace GameCore.Dice
         [field: SerializeField]
         public DiceFace[] DiceFaces { get; private set; } = new DiceFace[GlobalConstants.DICE_FACE_COUNT];
 
-        public void SetFacesValue(int value, int index)
+        public void SetValue(int value, int index)
         {
-            DiceFaces[index - 1].Value = value;
+            DiceFaces[index].Value = value;
         }
 
-        public int GetFacesValue(int index)
+        public int GetValue(int index)
         {
-            return DiceFaces[index - 1].Value;
+            return DiceFaces[index].Value;
         }
     }
 }

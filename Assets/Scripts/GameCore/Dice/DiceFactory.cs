@@ -14,12 +14,12 @@ namespace GameCore.Dice
             _diceHandConfigProvider = diceHandConfigProvider;
         }
 
-        public IEnumerable<DiceController> GetCubes(bool isActive = true)
+        public IEnumerable<PhysicDice> GetCubes(bool isActive = true)
         {
-            var dices = new List<DiceController>();
+            var dices = new List<PhysicDice>();
             foreach (var diceController in _diceHandConfigProvider.DicePrefabs)
             {
-                var dice = _container.InstantiatePrefabForComponent<DiceController>(diceController);
+                var dice = _container.InstantiatePrefabForComponent<PhysicDice>(diceController);
                 dice.gameObject.SetActive(isActive);
                 dices.Add(dice);
             }
