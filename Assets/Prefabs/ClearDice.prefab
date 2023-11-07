@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3545918746491031362}
   - component: {fileID: 6763194743879384785}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ClearDice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
