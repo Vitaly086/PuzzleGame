@@ -7,16 +7,16 @@ namespace GameCore.Dice
     public class DiceFacesSettings : ScriptableObject
     {
         [field: SerializeField]
-        public int[] DiceFacesValues { get; private set; } = new int[GlobalConstants.DICE_FACE_COUNT];
+        public DiceFace[] DiceFaces { get; private set; } = new DiceFace[GlobalConstants.DICE_FACE_COUNT];
 
         public void SetFacesValue(int value, int index)
         {
-            DiceFacesValues[index - 1] = value;
+            DiceFaces[index - 1].Value = value;
         }
 
         public int GetFacesValue(int index)
         {
-            return DiceFacesValues[index - 1];
+            return DiceFaces[index - 1].Value;
         }
     }
 }

@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEngine;
 using Zenject;
 
 namespace GameCore.Dice
@@ -14,10 +15,10 @@ namespace GameCore.Dice
             _diceFacesProvider = diceFacesProvider;
         }
 
-        public DiceFace GetFace(int value)
+        public GameObject GetFace(int value)
         {
             var prefab = _diceFacesProvider.GetFacePrefab(value);
-            var face = _container.InstantiatePrefabForComponent<DiceFace>(prefab);
+            var face = _container.InstantiatePrefab(prefab);
 
             if (value > 9 && face.TryGetComponent(out TextMeshPro label))
             {

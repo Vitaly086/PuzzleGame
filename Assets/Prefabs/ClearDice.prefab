@@ -159,6 +159,7 @@ MonoBehaviour:
   - {fileID: 4318131054556519531}
   - {fileID: 8054004408230265857}
   - {fileID: 2415538915859931429}
+  _diceFacesSettings: {fileID: 11400000, guid: a115f349251e644d680f69db3763968c, type: 2}
 --- !u!1 &4828756363568525929
 GameObject:
   m_ObjectHideFlags: 0

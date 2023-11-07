@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using DefaultNamespace;
 using Zenject;
 using UnityEngine;
@@ -10,7 +11,6 @@ namespace GameCore.Dice
     {
         [SerializeField]
         private Transform[] _facesRoot = new Transform[GlobalConstants.DICE_FACE_COUNT];
-        private readonly DiceFace[] _diceFaces = new DiceFace[GlobalConstants.DICE_FACE_COUNT];
 
         private DicePhysicSettings _dicePhysicSettings;
         private Rigidbody _rigidbody;
@@ -30,8 +30,8 @@ namespace GameCore.Dice
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<BoxCollider>();
 
-            ApplySettings();
-            CreateDiceFaces(diceFacesSettings.DiceFacesValues);
+            ApplyPhysicsSettings();
+            CreateDiceFaces(diceFacesSettings.DiceFaces.Select(face => face.Value).ToArray());
         }
 
         private void CreateDiceFaces(int[] diceFacesValues)
@@ -49,7 +49,6 @@ namespace GameCore.Dice
             }
         }
 
-
         public void Push()
         {
             var direction = (_target.Position - transform.position).normalized;
@@ -62,7 +61,7 @@ namespace GameCore.Dice
             _rigidbody.AddForce(force, ForceMode.Impulse);
         }
 
-        private void ApplySettings()
+        private void ApplyPhysicsSettings()
         {
             if (_dicePhysicSettings != null)
             {

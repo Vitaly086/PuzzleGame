@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace GameCore.Dice
 {
-    public class DiceFace : MonoBehaviour
+    [Serializable]
+    public class DiceFace
     {
+        [field: SerializeField]
         public int Value { get; set; }
     }
 }

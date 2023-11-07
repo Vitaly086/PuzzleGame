@@ -7,12 +7,12 @@ namespace GameCore.Dice
     public class DiceFacesProvider : ScriptableObject
     {
         [SerializeField]
-        private DiceFace[] _uniqueFacePrefabs;
+        private GameObject[] _uniqueFacePrefabs;
         [SerializeField]
-        private DiceFace _commonFacePrefab;
+        private GameObject _commonFacePrefab;
 
 
-        public DiceFace GetFacePrefab(int faceValue)
+        public GameObject GetFacePrefab(int faceValue)
         {
             switch (faceValue)
             {
