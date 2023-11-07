@@ -1,41 +1,30 @@
-using System;
-using System.Linq;
-using DefaultNamespace;
-using Zenject;
+﻿using System;
+using ModestTree.Util;
 using UnityEngine;
 
 namespace GameCore.Dice
 {
-    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+    /// <summary>
+    /// Кубик - содержит в себе 2 части: грани с их значениями и физическую составляющую кубика
+    /// </summary>
     public class Dice : MonoBehaviour
     {
-        [field: SerializeField] 
-        public Transform[] FacesRoot { get; set; }
+        public Action<Dice> Stopped;
+        
+        [field: SerializeField]
+        public DiceFaces DiceFaces;
+        
+        [field: SerializeField]
+        public PhysicDice PhysicDice;
 
-        [field: SerializeField] 
-        public DiceFacesSettings DiceFacesSettings { get; set; }
-        private DiceFaceFactory _diceFaceFactory;
-
-        [Inject]
-        private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings)
+        private void Awake()
         {
-            _diceFaceFactory = diceFaceFactory;
-            CreateDiceFaces(diceFacesSettings.DiceFaces.Select(face => face.Value).ToArray());
+            PhysicDice.Stopped += _ => Stopped?.Invoke(this);
         }
 
-        private void CreateDiceFaces(int[] diceFacesValues)
+        private void OnDestroy()
         {
-            if (FacesRoot.Length != diceFacesValues.Length)
-            {
-                throw new InvalidOperationException(
-                    "The number of dice face values does not match the number of face roots.");
-            }
-
-            for (int i = 0; i < FacesRoot.Length; i++)
-            {
-                var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
-                diceFaceInstance.transform.SetParent(FacesRoot[i], worldPositionStays: false);
-            }
+            PhysicDice.Stopped -= _ => Stopped?.Invoke(this);
         }
     }
 }

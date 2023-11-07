@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3545918746491031362}
   - component: {fileID: 6763194743879384785}
   - component: {fileID: 8321208812621606879}
+  - component: {fileID: 7310811241107143656}
   - component: {fileID: 8832856236650073278}
   - component: {fileID: 367802752108236857}
   m_Layer: 0
@@ -141,6 +142,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7310811241107143656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545879115191340051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b98350006441d598e45af0da6a3bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceFaces: {fileID: 8832856236650073278}
+  PhysicDice: {fileID: 367802752108236857}
 --- !u!114 &8832856236650073278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b081454b6844ccb7aa61eb420c2074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <FacesRoot>k__BackingField:
+  <FacesRoots>k__BackingField:
   - {fileID: 3295821237953885732}
   - {fileID: 4936565606469215777}
   - {fileID: 4427582224695288882}
@@ -173,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc22d2043c2431d8405200b51c4f6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stoppedTimeThreshold: 0.5
 --- !u!1 &4828756363568525929
 GameObject:
   m_ObjectHideFlags: 0

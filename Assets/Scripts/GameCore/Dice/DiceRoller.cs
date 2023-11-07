@@ -27,25 +27,24 @@ public class DiceRoller : MonoBehaviour
     public void Roll()
     {
         var dices = _dicePusher.PushDice();
-        foreach (var physicDice in dices)
+        foreach (var dice in dices)
         {
-            physicDice.Stopped += GetDiceValue;
+            dice.Stopped += GetDiceValue;
         }
     }
 
-    private void GetDiceValue(PhysicDice physicDice)
+    private void GetDiceValue(Dice dice)
     {
-        physicDice.Stopped -= GetDiceValue;
+        dice.Stopped -= GetDiceValue;
         
-        var dice = physicDice.GetComponent<Dice>();
-            
         float maxDot = 0;
         var faceIndex = 0;
 
-        var faces = dice.FacesRoot;
-        for (var i = 0; i < faces.Length; i++)
+        var faces = dice.DiceFaces;
+        var facesRoots = faces.FacesRoots;
+        for (var i = 0; i < facesRoots.Length; i++)
         {
-            var dot = Vector3.Dot(transform.TransformDirection(faces[i].transform.forward), Vector3.up);
+            var dot = Vector3.Dot(transform.TransformDirection(facesRoots[i].transform.forward), Vector3.up);
             if (dot > maxDot)
             {
                 maxDot = dot;
@@ -53,7 +52,7 @@ public class DiceRoller : MonoBehaviour
             }
         }
 
-        var faceValue = dice.DiceFacesSettings.GetValue(faceIndex);
+        var faceValue = faces.DiceFacesSettings.GetValue(faceIndex);
         _scoreController.SetScore(faceValue);
     }
 

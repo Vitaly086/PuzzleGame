@@ -19,14 +19,14 @@ namespace GameCore.Dice
             _diceFactory = diceFactory;
         }
 
-        public IEnumerable<PhysicDice> PushDice()
+        public IEnumerable<Dice> PushDice()
         {
             var dices = _diceFactory.GetCubes(false);
             _usedSpawnPoints.Clear();
 
             foreach (var dice in dices)
             {
-                SpawnDice(dice);
+                SpawnDice(dice.PhysicDice);
             }
 
             return dices;

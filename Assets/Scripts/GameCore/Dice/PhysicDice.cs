@@ -8,23 +8,21 @@ namespace GameCore.Dice
     {
         public Action<PhysicDice> Stopped;
 
-        private float
-            _stoppedThreshold = 0.1f; // Порог скорости, ниже которого считаем, что кубик перестал двигаться и вращаться
-
         [SerializeField]
-        private float _stoppedTimeThreshold = 0.5f; // Время, в течение которого скорость должна быть ниже порога
-
+        private float _stoppedTimeThreshold = 0.5f;
         private float _timeBelowThreshold;
+        
+        private float _stoppedThreshold = 0.1f;
 
         private DicePhysicSettings _dicePhysicSettings;
         private Rigidbody _rigidbody;
         private BoxCollider _collider;
         private ITarget _target;
-        private DiceFaceFactory _diceFaceFactory;
+        private DiceFaceFactory _faceFactory;
         private bool _isStopped;
 
         [Inject]
-        private void Construct(DiceFaceFactory diceFaceFactory, DiceFacesSettings diceFacesSettings,
+        private void Construct(DiceFaceFactory faceFactory, DiceFacesSettings diceFacesSettings,
             DicePhysicSettings dicePhysicSettings, ITarget target)
         {
             _dicePhysicSettings = dicePhysicSettings;
@@ -85,12 +83,11 @@ namespace GameCore.Dice
                 _collider.material = diceMaterial;
             }
         }
-        
+
         private bool IsFullyStopped()
         {
             return _rigidbody.velocity.magnitude < _stoppedThreshold &&
                    _rigidbody.angularVelocity.magnitude < _stoppedThreshold;
         }
-
     }
 }
