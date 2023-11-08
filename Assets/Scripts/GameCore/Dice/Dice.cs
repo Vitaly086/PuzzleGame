@@ -12,19 +12,24 @@ namespace GameCore.Dice
         public Action<Dice> Stopped;
         
         [field: SerializeField]
-        public DiceFaces DiceFaces;
+        public DiceFaces DiceFaces {get; private set;}
         
         [field: SerializeField]
-        public PhysicDice PhysicDice;
+        public PhysicDice PhysicDice {get; private set;}
 
         private void Awake()
         {
-            PhysicDice.Stopped += _ => Stopped?.Invoke(this);
+            PhysicDice.Stopped += OnPhysicCubeStopped;
+        }
+
+        private void OnPhysicCubeStopped()
+        {
+            Stopped?.Invoke(this);
         }
 
         private void OnDestroy()
         {
-            PhysicDice.Stopped -= _ => Stopped?.Invoke(this);
+            PhysicDice.Stopped -= OnPhysicCubeStopped;
         }
     }
 }

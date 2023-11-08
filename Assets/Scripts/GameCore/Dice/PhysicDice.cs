@@ -6,7 +6,7 @@ namespace GameCore.Dice
 {
     public class PhysicDice : MonoBehaviour
     {
-        public Action<PhysicDice> Stopped;
+        public Action Stopped;
 
         [SerializeField]
         private float _stoppedTimeThreshold = 0.5f;
@@ -46,7 +46,7 @@ namespace GameCore.Dice
                 _timeBelowThreshold += Time.deltaTime; // Накапливаем время, в течение которого скорость мала
                 if (_timeBelowThreshold >= _stoppedTimeThreshold)
                 {
-                    Stopped?.Invoke(this);
+                    Stopped?.Invoke();
                     _isStopped = true;
                 }
             }

@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b98350006441d598e45af0da6a3bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DiceFaces: {fileID: 2941536754827404259}
-  PhysicDice: {fileID: -3456709488728155217}
+  <DiceFaces>k__BackingField: {fileID: 2941536754827404259}
+  <PhysicDice>k__BackingField: {fileID: -3456709488728155217}
 --- !u!114 &2941536754827404259
 MonoBehaviour:
   m_ObjectHideFlags: 0
