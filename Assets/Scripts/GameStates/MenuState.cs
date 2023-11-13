@@ -19,6 +19,7 @@ public class MenuState : MetaGameState
 
     private void EnterGameState(PlayButtonPressedEvent obj)
     {
+        ScreensManager.CloseScreen<MetaGameScreen>();
         StateMachine.Enter<GameState>();
     }
 
