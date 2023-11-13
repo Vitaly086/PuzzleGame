@@ -7,8 +7,7 @@ public class MenuState : MetaGameState
     
     public override void OnEnter()
     {
-        base.OnEnter();
-        
+        SubscribeMenuButtons();
         ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(new MenuScreenContext());
         
         _subscriptions = new CompositeDisposable
@@ -26,7 +25,7 @@ public class MenuState : MetaGameState
     public override void OnExit()
     {
         base.OnExit();
-        _subscriptions.Dispose();
+        _subscriptions?.Dispose();
         ScreensManager.CloseScreen<MenuScreen>();
     }
 }

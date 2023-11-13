@@ -2,8 +2,7 @@ public class StoreState : MetaGameState
 {
     public override void OnEnter()
     {
-        base.OnEnter();
-        
+        SubscribeMenuButtons();
         ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext());
     }
 

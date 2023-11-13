@@ -2,7 +2,7 @@ using DefaultNamespace.Events;
 using IngameStateMachine;
 using SimpleEventBus.Disposables;
 
-public class MetaGameState :IState
+public class MetaGameState : IState
 {
     protected StateMachine StateMachine;
     private CompositeDisposable _subscriptions;
@@ -13,6 +13,14 @@ public class MetaGameState :IState
     }
 
     public virtual void OnEnter()
+    {
+        SubscribeMenuButtons();
+        
+        ScreensManager.OpenScreen<MetaGameScreen, MetaGameContext>(new MetaGameContext());
+        StateMachine.Enter<MenuState>();
+    }
+
+    protected void SubscribeMenuButtons()
     {
         _subscriptions = new CompositeDisposable
         {

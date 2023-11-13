@@ -2,8 +2,7 @@ public class LeaderboardState : MetaGameState
 {
     public override void OnEnter()
     {
-        base.OnEnter();
-        
+        SubscribeMenuButtons();
         ScreensManager.OpenScreen<LeaderboardScreen, LeaderboardScreenContext>(new LeaderboardScreenContext());
     }
 
