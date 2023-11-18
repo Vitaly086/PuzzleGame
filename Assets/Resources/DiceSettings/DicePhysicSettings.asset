@@ -15,3 +15,5 @@ MonoBehaviour:
   <Speed>k__BackingField: 3
   <Mass>k__BackingField: 1
   <Bounciness>k__BackingField: 0.152
+  <TorqueMagnitude>k__BackingField: 100
+  <StoppedTimeThreshold>k__BackingField: 0.5

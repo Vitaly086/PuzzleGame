@@ -1,18 +1,38 @@
 using System;
-using UnityEngine;
+using Events;
+using UniRx;
 
 namespace Score
 {
-    public class ScoreController : MonoBehaviour
+    public class ScoreController : IDisposable
     {
-        public Action<int, int> ScoreChangedEvent;
         private int _value;
+        private readonly ScoreView _scoreView;
+        private readonly CompositeDisposable _disposable;
 
-        public void SetScore(int value)
+
+        private ScoreController(ScoreView scoreView)
+        {
+            _disposable = new CompositeDisposable()
+            {
+                EventStreams.UserInterface.Subscribe<DiceRollCompletedEvent>(DiceRollCompleted)
+            };
+
+            _scoreView = scoreView;
+        }
+
+        private void DiceRollCompleted(DiceRollCompletedEvent eventData)
+        {
+            var score = eventData.Value;
+            SetScore(score);
+        }
+
+
+        private void SetScore(int value)
         {
             var currentScore = _value;
             _value += value;
-            ScoreChangedEvent?.Invoke(currentScore, _value);
+            _scoreView.UpdateView(currentScore, _value);
         }
 
         public bool TryBuy(int price)
@@ -20,11 +40,16 @@ namespace Score
             if (_value >= price)
             {
                 _value -= price;
-                ScoreChangedEvent?.Invoke(_value, _value);
+                _scoreView.UpdateView(_value, _value);
                 return true;
             }
 
             return false;
+        }
+
+        public void Dispose()
+        {
+            _disposable.Dispose();
         }
     }
 }

@@ -6,13 +6,10 @@ namespace GameCore.Dice
 {
     public class PhysicDice : MonoBehaviour
     {
-        public Action Stopped;
+        public event Action Stopped;
 
-        [SerializeField]
-        private float _stoppedTimeThreshold = 0.5f;
+        private readonly float _stoppedThreshold = 0.1f;
         private float _timeBelowThreshold;
-        
-        private float _stoppedThreshold = 0.1f;
 
         private DicePhysicSettings _dicePhysicSettings;
         private Rigidbody _rigidbody;
@@ -44,7 +41,7 @@ namespace GameCore.Dice
             if (IsFullyStopped())
             {
                 _timeBelowThreshold += Time.deltaTime; // Накапливаем время, в течение которого скорость мала
-                if (_timeBelowThreshold >= _stoppedTimeThreshold)
+                if (_timeBelowThreshold >= _dicePhysicSettings.StoppedTimeThreshold)
                 {
                     Stopped?.Invoke();
                     _isStopped = true;
@@ -66,6 +63,7 @@ namespace GameCore.Dice
 
             _rigidbody.isKinematic = false;
             _rigidbody.AddForce(force, ForceMode.Impulse);
+            AddRandomRotation();
 
             _isStopped = false;
         }
@@ -88,6 +86,18 @@ namespace GameCore.Dice
         {
             return _rigidbody.velocity.magnitude < _stoppedThreshold &&
                    _rigidbody.angularVelocity.magnitude < _stoppedThreshold;
+        }
+
+        private void AddRandomRotation()
+        {
+           
+            var torque = new Vector3(
+                UnityEngine.Random.Range(-1f, 1f),
+                UnityEngine.Random.Range(-1f, 1f),
+                UnityEngine.Random.Range(-1f, 1f)
+            ) * _dicePhysicSettings.TorqueMagnitude;
+
+            _rigidbody.AddTorque(torque, ForceMode.VelocityChange);
         }
     }
 }

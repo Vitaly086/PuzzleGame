@@ -6,19 +6,32 @@ namespace GameCore.Dice
     /// <summary>
     /// Кубик - содержит в себе 2 части: грани с их значениями и физическую составляющую кубика
     /// </summary>
+    [RequireComponent(typeof(DiceFaces), typeof(PhysicDice))]
     public class Dice : MonoBehaviour
     {
-        public Action<Dice> Stopped;
-        
-        [field: SerializeField]
-        public DiceFaces DiceFaces {get; private set;}
-        
-        [field: SerializeField]
-        public PhysicDice PhysicDice {get; private set;}
+        public event Action<Dice> Stopped;
 
-        private void Awake()
+        private DiceFaces _diceFaces;
+        private PhysicDice _physicDice;
+
+        public void Initialize()
         {
-            PhysicDice.Stopped += OnPhysicCubeStopped;
+            _diceFaces = GetComponent<DiceFaces>();
+            _physicDice = GetComponent<PhysicDice>();
+
+            _physicDice.Stopped += OnPhysicCubeStopped;
+        }
+
+        public void Push()
+        {
+            _physicDice.Push();
+        }
+
+        public Transform[] GetFacesRoot() => _diceFaces.FacesRoots;
+
+        public int GetFaceValue(int faceIndex)
+        {
+            return _diceFaces.DiceFacesSettings.GetValue(faceIndex);
         }
 
         private void OnPhysicCubeStopped()
@@ -28,7 +41,7 @@ namespace GameCore.Dice
 
         private void OnDestroy()
         {
-            PhysicDice.Stopped -= OnPhysicCubeStopped;
+            _physicDice.Stopped -= OnPhysicCubeStopped;
         }
     }
 }

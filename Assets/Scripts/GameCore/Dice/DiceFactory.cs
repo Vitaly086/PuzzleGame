@@ -20,6 +20,7 @@ namespace GameCore.Dice
             foreach (var diceController in _diceHandConfigProvider.DicePrefabs)
             {
                 var dice = _container.InstantiatePrefabForComponent<Dice>(diceController);
+                dice.Initialize();
                 dice.gameObject.SetActive(isActive);
                 dices.Add(dice);
             }

@@ -1,28 +1,20 @@
-﻿using JetBrains.Annotations;
-using Score;
+﻿using Events;
+using JetBrains.Annotations;
 using UnityEngine;
+using Zenject;
 
-//TODO: разделить логику и вью?
 namespace GameCore.Dice
 {
     public class DiceRoller : MonoBehaviour
     {
-        [SerializeField]
         private DicePusher _dicePusher;
-        [SerializeField] 
-        private ScoreController _scoreController;
-        [SerializeField] 
-        private ScoreView _scoreView;
 
-        private void Awake()
+        [Inject]
+        private void Construct(DicePusher dicePusher)
         {
-            _scoreController.ScoreChangedEvent += OnScoreChanged;
+            _dicePusher = dicePusher;
         }
 
-        private void OnScoreChanged(int currentScore, int newScore)
-        {
-            _scoreView.UpdateViewGradually(currentScore, newScore);
-        }
 
         [UsedImplicitly]
         public void Roll()
@@ -37,12 +29,11 @@ namespace GameCore.Dice
         private void GetDiceValue(Dice dice)
         {
             dice.Stopped -= GetDiceValue;
-        
+
             float maxDot = 0;
             var faceIndex = 0;
 
-            var faces = dice.DiceFaces;
-            var facesRoots = faces.FacesRoots;
+            var facesRoots = dice.GetFacesRoot();
             for (var i = 0; i < facesRoots.Length; i++)
             {
                 var dot = Vector3.Dot(transform.TransformDirection(facesRoots[i].transform.forward), Vector3.up);
@@ -52,14 +43,9 @@ namespace GameCore.Dice
                     faceIndex = i;
                 }
             }
-
-            var faceValue = faces.DiceFacesSettings.GetValue(faceIndex);
-            _scoreController.SetScore(faceValue);
-        }
-
-        private void OnDestroy()
-        {
-            _scoreController.ScoreChangedEvent -= OnScoreChanged;
+            
+            var faceValue = dice.GetFaceValue(faceIndex);
+            EventStreams.UserInterface.Publish(new DiceRollCompletedEvent(faceValue));
         }
     }
 }

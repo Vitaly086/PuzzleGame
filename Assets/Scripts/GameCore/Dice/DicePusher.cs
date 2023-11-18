@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace GameCore.Dice
 {
-    public class DicePusher : MonoBehaviour
+    public class DicePusher
     {
-        [SerializeField]
-        private List<Transform> _spawnPoints;
+        private readonly List<Transform> _spawnPoints;
 
         private readonly HashSet<int> _usedSpawnPoints = new();
-        private DiceFactory _diceFactory;
+        private readonly DiceFactory _diceFactory;
 
-        [Inject]
-        private void Construct(DiceFactory diceFactory)
+
+        public DicePusher(DiceFactory diceFactory, ISpawnPoints spawnPoints)
         {
             _diceFactory = diceFactory;
+            _spawnPoints = spawnPoints.Points;
         }
 
         public IEnumerable<Dice> PushDice()
@@ -25,13 +24,13 @@ namespace GameCore.Dice
 
             foreach (var dice in dices)
             {
-                SpawnDice(dice.PhysicDice);
+                SpawnDice(dice);
             }
 
             return dices;
         }
 
-        private void SpawnDice(PhysicDice dice)
+        private void SpawnDice(Dice dice)
         {
             var spawnIndex = GetUniqueSpawnPointIndex();
             var spawnPoint = _spawnPoints[spawnIndex];

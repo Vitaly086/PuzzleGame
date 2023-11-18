@@ -1,3 +1,4 @@
+using GameCore;
 using GameCore.Dice;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,10 @@ namespace Installers
         private DiceFacesProvider _diceFacesProvider;
         [SerializeField]
         private DiceFacesSettings _diceFacesSettings;
+        [SerializeField]
+        private SpawnPoints _spawnPoints;
+        [SerializeField]
+        private DiceRoller _diceRoller;
         
         public override void InstallBindings()
         {
@@ -27,7 +32,9 @@ namespace Installers
         private void BindDiceSetup()
         {
             Container.Bind<DiceFactory>().AsSingle().WithArguments(_diceHandConfigProvider);
+            Container.Bind<DicePusher>().AsSingle().WithArguments(_spawnPoints);
             Container.BindInstance(_dicePhysicSettings).AsTransient();
+            Container.BindInstance(_diceRoller);
         }
 
         private void BindTargetSetup()
