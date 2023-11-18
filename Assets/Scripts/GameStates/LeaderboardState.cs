@@ -1,14 +1,20 @@
-public class LeaderboardState : MetaGameState
-{
-    public override void OnEnter()
-    {
-        SubscribeMenuButtons();
-        ScreensManager.OpenScreen<LeaderboardScreen, LeaderboardScreenContext>(new LeaderboardScreenContext());
-    }
+using ScreenManager.Core;
+using Screens.LeaderboardScreen;
 
-    public override void OnExit()
+namespace GameStates
+{
+    public class LeaderboardState : MetaGameState
     {
-        base.OnExit();
-        ScreensManager.CloseScreen<LeaderboardScreen>();
+        public override void OnEnter()
+        {
+            SubscribeMenuButtons();
+            ScreensManager.OpenScreen<LeaderboardScreen, LeaderboardScreenContext>(new LeaderboardScreenContext());
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            ScreensManager.CloseScreen<LeaderboardScreen>();
+        }
     }
 }

@@ -2,13 +2,16 @@
 using SimpleBus.Extensions;
 using UnityEngine;
 
-public class CloseScreenButton : MonoBehaviour
+namespace ScreenManager.Core
 {
-    [SerializeField]
-    private UIScreen _screen;
-
-    public void Close()
+    public class CloseScreenButton : MonoBehaviour
     {
-        CloseScreenByGuidEvent.Create(_screen.Guid).Publish(EventStreams.UserInterface);
+        [SerializeField]
+        private UIScreen _screen;
+
+        public void Close()
+        {
+            CloseScreenByGuidEvent.Create(_screen.Guid).Publish(EventStreams.UserInterface);
+        }
     }
 }

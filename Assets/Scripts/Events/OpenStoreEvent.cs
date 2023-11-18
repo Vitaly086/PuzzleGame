@@ -1,6 +1,6 @@
 using SimpleEventBus.Events;
 
-namespace DefaultNamespace.Events
+namespace Events
 {
     public class OpenStoreEvent : EventBase
     {

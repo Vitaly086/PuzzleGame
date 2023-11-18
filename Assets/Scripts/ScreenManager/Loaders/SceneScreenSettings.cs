@@ -1,6 +1,6 @@
 ﻿using ScreenManager.Interfaces;
 
-namespace ScreenManager.Loaders.Scenes
+namespace ScreenManager.Loaders
 {
     public class SceneScreenSettings : IScreenSettings
     {

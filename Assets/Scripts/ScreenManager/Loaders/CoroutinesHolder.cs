@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ScreenManager.Loaders.Scenes
+namespace ScreenManager.Loaders
 {
     public class CoroutinesHolder : MonoBehaviour
     {

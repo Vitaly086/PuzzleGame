@@ -1,6 +1,9 @@
 ﻿using ScreenManager.Interfaces;
 
-public interface IScreenWithTypedContext<TContext> : IScreen
+namespace ScreenManager.Core
 {
-    void Initialize(TContext context);
+    public interface IScreenWithTypedContext<TContext> : IScreen
+    {
+        void Initialize(TContext context);
+    }
 }

@@ -1,10 +1,13 @@
-﻿using DefaultNamespace.Events;
+﻿using Events;
 using ScreenManager.Core;
 
-public class LeaderboardScreen :  UIScreen<LeaderboardScreenContext>
+namespace Screens.LeaderboardScreen
 {
-    public override void Initialize(LeaderboardScreenContext context)
+    public class LeaderboardScreen :  UIScreen<LeaderboardScreenContext>
     {
-        EventStreams.UserInterface.Publish(new OpenLeaderboardEvent());
+        public override void Initialize(LeaderboardScreenContext context)
+        {
+            EventStreams.UserInterface.Publish(new OpenLeaderboardEvent());
+        }
     }
 }

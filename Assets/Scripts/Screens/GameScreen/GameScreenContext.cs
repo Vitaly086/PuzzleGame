@@ -1,4 +1,7 @@
-public class GameScreenContext
+namespace Screens.GameScreen
 {
+    public class GameScreenContext
+    {
         
+    }
 }

@@ -4,7 +4,7 @@
 
 using UnityEngine;
 
-namespace Ricimi
+namespace GUIPackCartoon.Demo.Scripts
 {
     // This class is responsible for creating and opening a popup of the given prefab and add
     // it to the UI canvas of the current scene.

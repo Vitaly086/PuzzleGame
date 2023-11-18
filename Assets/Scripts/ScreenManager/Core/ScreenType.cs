@@ -1,10 +1,13 @@
 ﻿using ScreenManager.Enums;
 
-public static class ScreenType
+namespace ScreenManager.Core
 {
-    public static ScreenId Get<TScreen>()
+    public static class ScreenType
     {
-        var typeName = typeof(TScreen).Name;
-        return typeName.GetHashCode();
+        public static ScreenId Get<TScreen>()
+        {
+            var typeName = typeof(TScreen).Name;
+            return typeName.GetHashCode();
+        }
     }
 }

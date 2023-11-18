@@ -1,15 +1,18 @@
 ﻿using SimpleEventBus.Events;
 
-public class RegisterNewScreenEvent : EventBase
+namespace ScreenManager.Loaders
 {
-    public RegisterNewScreenEvent(int id, string scene, string name)
+    public class RegisterNewScreenEvent : EventBase
     {
-        Id = id;
-        Name = name;
-        Scene = scene;
-    }
+        public RegisterNewScreenEvent(int id, string scene, string name)
+        {
+            Id = id;
+            Name = name;
+            Scene = scene;
+        }
 
-    public int Id;
-    public string Name;
-    public string Scene;
+        public int Id;
+        public string Name;
+        public string Scene;
+    }
 }

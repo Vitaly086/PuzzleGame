@@ -5,7 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ricimi
+namespace GUIPackCartoon.Demo.Scripts
 {
     // Specialized behavior for the popup that opens before selecting a level to play in
     // the demo. It showcases how to create a specialized popup with custom behavior: in this

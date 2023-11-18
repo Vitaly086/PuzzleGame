@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace ScreenManager.Loaders.Scenes
+namespace ScreenManager.Loaders
 {
     public static class SceneUtils
     {

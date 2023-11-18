@@ -1,14 +1,20 @@
-public class StoreState : MetaGameState
-{
-    public override void OnEnter()
-    {
-        SubscribeMenuButtons();
-        ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext());
-    }
+using ScreenManager.Core;
+using Screens.StoreScreen;
 
-    public override void OnExit()
+namespace GameStates
+{
+    public class StoreState : MetaGameState
     {
-        base.OnExit();
-        ScreensManager.CloseScreen<StoreScreen>();
+        public override void OnEnter()
+        {
+            SubscribeMenuButtons();
+            ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext());
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            ScreensManager.CloseScreen<StoreScreen>();
+        }
     }
 }

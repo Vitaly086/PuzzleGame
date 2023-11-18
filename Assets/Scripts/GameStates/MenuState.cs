@@ -1,31 +1,37 @@
-using DefaultNamespace.Events;
+using Events;
+using ScreenManager.Core;
+using Screens.MenuScreen;
+using Screens.MetaGameScreen;
 using SimpleEventBus.Disposables;
 
-public class MenuState : MetaGameState
+namespace GameStates
 {
-    private CompositeDisposable _subscriptions;
+    public class MenuState : MetaGameState
+    {
+        private CompositeDisposable _subscriptions;
     
-    public override void OnEnter()
-    {
-        SubscribeMenuButtons();
-        ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(new MenuScreenContext());
-        
-        _subscriptions = new CompositeDisposable
+        public override void OnEnter()
         {
-            EventStreams.UserInterface.Subscribe<PlayButtonPressedEvent>(EnterGameState)
-        };
-    }
+            SubscribeMenuButtons();
+            ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(new MenuScreenContext());
+        
+            _subscriptions = new CompositeDisposable
+            {
+                EventStreams.UserInterface.Subscribe<PlayButtonPressedEvent>(EnterGameState)
+            };
+        }
 
-    private void EnterGameState(PlayButtonPressedEvent obj)
-    {
-        ScreensManager.CloseScreen<MetaGameScreen>();
-        StateMachine.Enter<GameState>();
-    }
+        private void EnterGameState(PlayButtonPressedEvent obj)
+        {
+            ScreensManager.CloseScreen<MetaGameScreen>();
+            StateMachine.Enter<GameState>();
+        }
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        _subscriptions?.Dispose();
-        ScreensManager.CloseScreen<MenuScreen>();
+        public override void OnExit()
+        {
+            base.OnExit();
+            _subscriptions?.Dispose();
+            ScreensManager.CloseScreen<MenuScreen>();
+        }
     }
 }

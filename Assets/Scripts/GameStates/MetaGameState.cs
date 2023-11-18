@@ -1,52 +1,57 @@
-using DefaultNamespace.Events;
+using Events;
 using IngameStateMachine;
+using ScreenManager.Core;
+using Screens.MetaGameScreen;
 using SimpleEventBus.Disposables;
 
-public class MetaGameState : IState
+namespace GameStates
 {
-    protected StateMachine StateMachine;
-    private CompositeDisposable _subscriptions;
+    public class MetaGameState : IState
+    {
+        protected StateMachine StateMachine;
+        private CompositeDisposable _subscriptions;
     
-    public void Initialize(StateMachine stateMachine)
-    {
-        StateMachine = stateMachine;
-    }
-
-    public virtual void OnEnter()
-    {
-        SubscribeMenuButtons();
-        
-        ScreensManager.OpenScreen<MetaGameScreen, MetaGameContext>(new MetaGameContext());
-        StateMachine.Enter<MenuState>();
-    }
-
-    protected void SubscribeMenuButtons()
-    {
-        _subscriptions = new CompositeDisposable
+        public void Initialize(StateMachine stateMachine)
         {
-            EventStreams.UserInterface.Subscribe<StoreButtonPressedEvent>(EnterStoreState),
-            EventStreams.UserInterface.Subscribe<MenuButtonPressedEvent>(EnterMenuState),
-            EventStreams.UserInterface.Subscribe<LeaderboardButtonPressedEvent>(EnterLeaderboardState),
-        };
-    }
+            StateMachine = stateMachine;
+        }
 
-    private void EnterStoreState(StoreButtonPressedEvent obj)
-    {
-        StateMachine.Enter<StoreState>();
-    }
+        public virtual void OnEnter()
+        {
+            SubscribeMenuButtons();
+        
+            ScreensManager.OpenScreen<MetaGameScreen, MetaGameContext>(new MetaGameContext());
+            StateMachine.Enter<MenuState>();
+        }
 
-    private void EnterMenuState(MenuButtonPressedEvent obj)
-    {
-        StateMachine.Enter<MenuState>();
-    }
+        protected void SubscribeMenuButtons()
+        {
+            _subscriptions = new CompositeDisposable
+            {
+                EventStreams.UserInterface.Subscribe<StoreButtonPressedEvent>(EnterStoreState),
+                EventStreams.UserInterface.Subscribe<MenuButtonPressedEvent>(EnterMenuState),
+                EventStreams.UserInterface.Subscribe<LeaderboardButtonPressedEvent>(EnterLeaderboardState),
+            };
+        }
 
-    private void EnterLeaderboardState(LeaderboardButtonPressedEvent obj)
-    {
-        StateMachine.Enter<LeaderboardState>();
-    }
+        private void EnterStoreState(StoreButtonPressedEvent obj)
+        {
+            StateMachine.Enter<StoreState>();
+        }
 
-    public virtual void OnExit()
-    {
-        _subscriptions?.Dispose();
+        private void EnterMenuState(MenuButtonPressedEvent obj)
+        {
+            StateMachine.Enter<MenuState>();
+        }
+
+        private void EnterLeaderboardState(LeaderboardButtonPressedEvent obj)
+        {
+            StateMachine.Enter<LeaderboardState>();
+        }
+
+        public virtual void OnExit()
+        {
+            _subscriptions?.Dispose();
+        }
     }
 }

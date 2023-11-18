@@ -1,63 +1,65 @@
-﻿using GameCore.Dice;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Score;
 using UnityEngine;
 
 //TODO: разделить логику и вью?
-public class DiceRoller : MonoBehaviour
+namespace GameCore.Dice
 {
-    [SerializeField]
-    private DicePusher _dicePusher;
-    [SerializeField] 
-    private ScoreController _scoreController;
-    [SerializeField] 
-    private ScoreView _scoreView;
-
-    private void Awake()
+    public class DiceRoller : MonoBehaviour
     {
-        _scoreController.ScoreChangedEvent += OnScoreChanged;
-    }
+        [SerializeField]
+        private DicePusher _dicePusher;
+        [SerializeField] 
+        private ScoreController _scoreController;
+        [SerializeField] 
+        private ScoreView _scoreView;
 
-    private void OnScoreChanged(int currentScore, int newScore)
-    {
-        _scoreView.UpdateViewGradually(currentScore, newScore);
-    }
-
-    [UsedImplicitly]
-    public void Roll()
-    {
-        var dices = _dicePusher.PushDice();
-        foreach (var dice in dices)
+        private void Awake()
         {
-            dice.Stopped += GetDiceValue;
+            _scoreController.ScoreChangedEvent += OnScoreChanged;
         }
-    }
 
-    private void GetDiceValue(Dice dice)
-    {
-        dice.Stopped -= GetDiceValue;
-        
-        float maxDot = 0;
-        var faceIndex = 0;
-
-        var faces = dice.DiceFaces;
-        var facesRoots = faces.FacesRoots;
-        for (var i = 0; i < facesRoots.Length; i++)
+        private void OnScoreChanged(int currentScore, int newScore)
         {
-            var dot = Vector3.Dot(transform.TransformDirection(facesRoots[i].transform.forward), Vector3.up);
-            if (dot > maxDot)
+            _scoreView.UpdateViewGradually(currentScore, newScore);
+        }
+
+        [UsedImplicitly]
+        public void Roll()
+        {
+            var dices = _dicePusher.PushDice();
+            foreach (var dice in dices)
             {
-                maxDot = dot;
-                faceIndex = i;
+                dice.Stopped += GetDiceValue;
             }
         }
 
-        var faceValue = faces.DiceFacesSettings.GetValue(faceIndex);
-        _scoreController.SetScore(faceValue);
-    }
+        private void GetDiceValue(Dice dice)
+        {
+            dice.Stopped -= GetDiceValue;
+        
+            float maxDot = 0;
+            var faceIndex = 0;
 
-    private void OnDestroy()
-    {
-        _scoreController.ScoreChangedEvent -= OnScoreChanged;
+            var faces = dice.DiceFaces;
+            var facesRoots = faces.FacesRoots;
+            for (var i = 0; i < facesRoots.Length; i++)
+            {
+                var dot = Vector3.Dot(transform.TransformDirection(facesRoots[i].transform.forward), Vector3.up);
+                if (dot > maxDot)
+                {
+                    maxDot = dot;
+                    faceIndex = i;
+                }
+            }
+
+            var faceValue = faces.DiceFacesSettings.GetValue(faceIndex);
+            _scoreController.SetScore(faceValue);
+        }
+
+        private void OnDestroy()
+        {
+            _scoreController.ScoreChangedEvent -= OnScoreChanged;
+        }
     }
 }

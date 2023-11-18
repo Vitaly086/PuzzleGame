@@ -1,17 +1,20 @@
-﻿using DefaultNamespace.Events;
+﻿using Events;
 using JetBrains.Annotations;
 using ScreenManager.Core;
 
-public class MenuScreen :  UIScreen<MenuScreenContext>
+namespace Screens.MenuScreen
 {
-    public override void Initialize(MenuScreenContext context)
+    public class MenuScreen :  UIScreen<MenuScreenContext>
     {
-        EventStreams.UserInterface.Publish(new OpenMenuEvent());
-    }
+        public override void Initialize(MenuScreenContext context)
+        {
+            EventStreams.UserInterface.Publish(new OpenMenuEvent());
+        }
     
-    [UsedImplicitly]
-    public void PressPlayButton()
-    {
-        EventStreams.UserInterface.Publish(new PlayButtonPressedEvent());
+        [UsedImplicitly]
+        public void PressPlayButton()
+        {
+            EventStreams.UserInterface.Publish(new PlayButtonPressedEvent());
+        }
     }
 }

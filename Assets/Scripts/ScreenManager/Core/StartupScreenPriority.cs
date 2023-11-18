@@ -6,28 +6,32 @@
 [4] all in-apps pop up based on the priority set up from Errol
 [5] deal pop up (for the available deal for the user)
 */
-public enum StartupScreenPriority
-{
-    ShopRecovery = 900,
-    DeepLinkScreen = 800,
-    SweepstakePromo = 700,
-    ClansSeasonEnd = 696,
-    ClansMissions = 695,
-    VideoPromo = 690,
-    InAppScreen = 600,
-    DealScreen = 500,
-    LoginScreen = 400,
-}
 
-public enum SlotScreensPriority
+namespace ScreenManager.Core
 {
-    ActionProcessor = 15000,
-    Magnet = 10100,
-    LevelUp = 10000,
-    JourneyMissionCompleted = 9900,
-    JourneySeasonOver = 9800,
-    JourneyMissionsGameWelcome = 9700,
-    JourneyMissionsWelcome = 9600,
-    JourneyMissionsHowToPlay = 9500,
-    JourneyMissionsGameOutOfSpins = 9400,
+    public enum StartupScreenPriority
+    {
+        ShopRecovery = 900,
+        DeepLinkScreen = 800,
+        SweepstakePromo = 700,
+        ClansSeasonEnd = 696,
+        ClansMissions = 695,
+        VideoPromo = 690,
+        InAppScreen = 600,
+        DealScreen = 500,
+        LoginScreen = 400,
+    }
+
+    public enum SlotScreensPriority
+    {
+        ActionProcessor = 15000,
+        Magnet = 10100,
+        LevelUp = 10000,
+        JourneyMissionCompleted = 9900,
+        JourneySeasonOver = 9800,
+        JourneyMissionsGameWelcome = 9700,
+        JourneyMissionsWelcome = 9600,
+        JourneyMissionsHowToPlay = 9500,
+        JourneyMissionsGameOutOfSpins = 9400,
+    }
 }

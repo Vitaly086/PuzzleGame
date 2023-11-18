@@ -1,18 +1,21 @@
 using SimpleBus.Extensions;
 using SimpleEventBus.Events;
 
-public class GetScreenIdBySceneNameEvent : EventBase
+namespace ScreenManager.Loaders
 {
-    public int? Id;
-    public string Scene;
-
-    public static int? Invoke(string scene)
+    public class GetScreenIdBySceneNameEvent : EventBase
     {
-        var eventData = EventFactory.Create<GetScreenIdBySceneNameEvent>();
-        eventData.Id = null;
-        eventData.Scene = scene;
-        eventData.Publish(EventStreams.UserInterface);
+        public int? Id;
+        public string Scene;
 
-        return eventData.Id;
+        public static int? Invoke(string scene)
+        {
+            var eventData = EventFactory.Create<GetScreenIdBySceneNameEvent>();
+            eventData.Id = null;
+            eventData.Scene = scene;
+            eventData.Publish(EventStreams.UserInterface);
+
+            return eventData.Id;
+        }
     }
 }

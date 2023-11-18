@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using UnityEngine;
 
 namespace GameCore.Dice

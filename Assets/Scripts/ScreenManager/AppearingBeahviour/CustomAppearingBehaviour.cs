@@ -3,7 +3,7 @@ using ScreenManager.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ScreenManager.Loaders.Scenes
+namespace ScreenManager.AppearingBeahviour
 {
     public class CustomAppearingBehaviour : MonoBehaviour, IAppearingScreenBehaviour
     {

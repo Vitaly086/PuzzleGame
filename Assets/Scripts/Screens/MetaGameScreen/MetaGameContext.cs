@@ -1,4 +1,7 @@
-public class MetaGameContext
+namespace Screens.MetaGameScreen
 {
+    public class MetaGameContext
+    {
         
+    }
 }

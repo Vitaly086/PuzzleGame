@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
-namespace ScreenManager.Loaders.Scenes
+namespace ScreenManager.Loaders
 {
     public class SceneAsScreenLoader : IScreenLoader
     {

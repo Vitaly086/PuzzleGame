@@ -1,4 +1,7 @@
-public class LeaderboardScreenContext
+namespace Screens.LeaderboardScreen
 {
+    public class LeaderboardScreenContext
+    {
         
+    }
 }

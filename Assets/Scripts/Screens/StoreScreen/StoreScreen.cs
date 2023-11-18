@@ -1,10 +1,13 @@
-﻿using DefaultNamespace.Events;
+﻿using Events;
 using ScreenManager.Core;
 
-public class StoreScreen :  UIScreen<StoreScreenContext>
+namespace Screens.StoreScreen
 {
-    public override void Initialize(StoreScreenContext context)
+    public class StoreScreen :  UIScreen<StoreScreenContext>
     {
-        EventStreams.UserInterface.Publish(new OpenStoreEvent());
+        public override void Initialize(StoreScreenContext context)
+        {
+            EventStreams.UserInterface.Publish(new OpenStoreEvent());
+        }
     }
 }

@@ -1,13 +1,16 @@
 using SimpleEventBus.Events;
 
-public class RegisterNewBundleUrlEvent : EventBase
+namespace ScreenManager.Loaders
 {
-    public RegisterNewBundleUrlEvent(string scene, string url)
+    public class RegisterNewBundleUrlEvent : EventBase
     {
-        Scene = scene;
-        Url = url;
-    }
+        public RegisterNewBundleUrlEvent(string scene, string url)
+        {
+            Scene = scene;
+            Url = url;
+        }
 
-    public string Url;
-    public string Scene;
+        public string Url;
+        public string Scene;
+    }
 }

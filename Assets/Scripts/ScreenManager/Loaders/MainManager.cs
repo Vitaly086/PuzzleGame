@@ -1,9 +1,8 @@
-using DefaultNamespace.Events;
+using GameStates;
 using IngameStateMachine;
-using SimpleEventBus.Disposables;
 using UnityEngine;
 
-namespace ScreenManager.Loaders.Scenes
+namespace ScreenManager.Loaders
 {
     public class MainManager : MonoBehaviour
     {
