@@ -1,4 +1,5 @@
 using Events;
+using GameServices;
 using IngameStateMachine;
 using ScreenManager.Core;
 using Screens.MetaGameScreen;
@@ -19,7 +20,7 @@ namespace GameStates
         public virtual void OnEnter()
         {
             SubscribeMenuButtons();
-        
+
             ScreensManager.OpenScreen<MetaGameScreen, MetaGameContext>(new MetaGameContext());
             StateMachine.Enter<MenuState>();
         }

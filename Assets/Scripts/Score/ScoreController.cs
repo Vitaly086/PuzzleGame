@@ -10,7 +10,6 @@ namespace Score
         private readonly ScoreView _scoreView;
         private readonly CompositeDisposable _disposable;
 
-
         private ScoreController(ScoreView scoreView)
         {
             _disposable = new CompositeDisposable()
@@ -27,12 +26,11 @@ namespace Score
             SetScore(score);
         }
 
-
         private void SetScore(int value)
         {
             var currentScore = _value;
             _value += value;
-            _scoreView.UpdateView(currentScore, _value);
+            _scoreView.UpdateViewGradually(currentScore, _value);
         }
 
         public bool TryBuy(int price)
