@@ -24,9 +24,12 @@ namespace GameStates
             var level = LevelSettingsProvider.GetLevelByRolls(currentRollsCount);
             float rollsForUpgrade = LevelSettingsProvider.GetRollsCount(level);
 
+            // Если есть предыдущий уровень
             var previousLevel = level > 1 ? level - 1 : 0;
             if (previousLevel != 0)
             {
+                // находим количество бросков чисто на текущем уровне (за вычетом предыдущих)
+                // Для правильного расчета прогресса текущего уровня
                 rollsForUpgrade -= LevelSettingsProvider.GetRollsCount(previousLevel);
                 currentRollsCount -= LevelSettingsProvider.GetRollsCount(previousLevel);
             }

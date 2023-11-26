@@ -19,11 +19,11 @@ namespace Screens.MenuScreen
         
         public void SetSprite(float currentProgress)
         {
-            if (currentProgress > 0.67)
+            if (currentProgress > 0.67) // Больше 2/3
             {
                 _levelBackground.sprite = _highProgressSprite;
             }
-            else if (currentProgress > 0.34)
+            else if (currentProgress > 0.34) // Больше 1/3
             {
                 _levelBackground.sprite = _mediumProgressSprite;
             }
