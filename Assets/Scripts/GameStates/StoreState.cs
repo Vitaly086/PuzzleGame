@@ -1,5 +1,7 @@
+using Score;
 using ScreenManager.Core;
 using Screens.StoreScreen;
+using UnityEngine;
 
 namespace GameStates
 {
@@ -14,7 +16,8 @@ namespace GameStates
         public override void OnEnter()
         {
             SubscribeMenuButtons();
-            ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext());
+            var score = ScoreProvider.Score.Value;
+            ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext(score));
         }
 
         public override void OnExit()
