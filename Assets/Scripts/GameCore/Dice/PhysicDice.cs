@@ -1,4 +1,5 @@
 using System;
+using Events;
 using UnityEngine;
 using Zenject;
 
@@ -65,6 +66,7 @@ namespace GameCore.Dice
             _rigidbody.AddForce(force, ForceMode.Impulse);
             AddRandomRotation();
 
+            EventStreams.UserInterface.Publish(new DicePushed());
             _isStopped = false;
         }
 
@@ -90,8 +92,7 @@ namespace GameCore.Dice
 
         private void AddRandomRotation()
         {
-           
-            var torque = new Vector3(
+           var torque = new Vector3(
                 UnityEngine.Random.Range(-1f, 1f),
                 UnityEngine.Random.Range(-1f, 1f),
                 UnityEngine.Random.Range(-1f, 1f)

@@ -5,6 +5,12 @@ namespace GameStates
 {
     public class LeaderboardState : MetaGameState
     {
+        public LeaderboardState(IScoreProvider scoreProvider, ILevelProvider levelProvider,
+            ILevelSettingsProvider levelSettingsProvider) : base(scoreProvider,
+            levelProvider, levelSettingsProvider)
+        {
+        }
+
         public override void OnEnter()
         {
             SubscribeMenuButtons();

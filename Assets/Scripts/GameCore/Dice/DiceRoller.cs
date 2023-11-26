@@ -15,7 +15,6 @@ namespace GameCore.Dice
             _dicePusher = dicePusher;
         }
 
-
         [UsedImplicitly]
         public void Roll()
         {

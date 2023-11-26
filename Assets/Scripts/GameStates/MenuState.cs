@@ -3,18 +3,40 @@ using ScreenManager.Core;
 using Screens.MenuScreen;
 using Screens.MetaGameScreen;
 using SimpleEventBus.Disposables;
+using UnityEngine;
 
 namespace GameStates
 {
     public class MenuState : MetaGameState
     {
         private CompositeDisposable _subscriptions;
-    
+
+        public MenuState(IScoreProvider scoreProvider, ILevelProvider levelProvider,
+            ILevelSettingsProvider levelSettingsProvider) : base(scoreProvider,
+            levelProvider, levelSettingsProvider)
+        {
+        }
+
         public override void OnEnter()
         {
             SubscribeMenuButtons();
-            ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(new MenuScreenContext());
-        
+            var currentRollsCount = LevelProvider.RollsCount.Value;
+            var level = LevelSettingsProvider.GetLevelByRolls(currentRollsCount);
+            float rollsForUpgrade = LevelSettingsProvider.GetRollsCount(level);
+
+            var previousLevel = level > 1 ? level - 1 : 0;
+            if (previousLevel != 0)
+            {
+                rollsForUpgrade -= LevelSettingsProvider.GetRollsCount(previousLevel);
+                currentRollsCount -= LevelSettingsProvider.GetRollsCount(previousLevel);
+            }
+
+            var levelProgress = currentRollsCount / rollsForUpgrade;
+            var score = ScoreProvider.Score.Value;
+            
+            ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(
+                new MenuScreenContext(level, levelProgress, score));
+
             _subscriptions = new CompositeDisposable
             {
                 EventStreams.UserInterface.Subscribe<PlayButtonPressedEvent>(EnterGameState)

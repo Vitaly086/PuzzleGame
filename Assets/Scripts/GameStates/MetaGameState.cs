@@ -9,8 +9,19 @@ namespace GameStates
     public class MetaGameState : IState
     {
         protected StateMachine StateMachine;
+        protected readonly IScoreProvider ScoreProvider;
+        protected readonly ILevelProvider LevelProvider;
+        protected readonly ILevelSettingsProvider LevelSettingsProvider;
         private CompositeDisposable _subscriptions;
-    
+
+        public MetaGameState(IScoreProvider scoreProvider, ILevelProvider levelProvider,
+            ILevelSettingsProvider levelSettingsProvider)
+        {
+            LevelProvider = levelProvider;
+            LevelSettingsProvider = levelSettingsProvider;
+            ScoreProvider = scoreProvider;
+        }
+
         public void Initialize(StateMachine stateMachine)
         {
             StateMachine = stateMachine;
@@ -19,7 +30,7 @@ namespace GameStates
         public virtual void OnEnter()
         {
             SubscribeMenuButtons();
-        
+
             ScreensManager.OpenScreen<MetaGameScreen, MetaGameContext>(new MetaGameContext());
             StateMachine.Enter<MenuState>();
         }
