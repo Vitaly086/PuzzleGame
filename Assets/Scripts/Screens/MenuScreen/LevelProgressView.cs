@@ -19,7 +19,6 @@ namespace Screens.MenuScreen
         
         public void SetSprite(float currentProgress)
         {
-            Debug.LogWarning(currentProgress);
             if (currentProgress > 0.67)
             {
                 _levelBackground.sprite = _highProgressSprite;

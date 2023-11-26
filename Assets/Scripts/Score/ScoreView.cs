@@ -13,11 +13,6 @@ namespace Score
 
         private Coroutine _scoreCoroutine;
         
-        public void UpdateView(int currentScore, int value)
-        {
-            _valueLabel.text = value.ToString();
-        }
-        
         public void UpdateView(int value)
         {
             _valueLabel.text = value.ToString();

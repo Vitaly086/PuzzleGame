@@ -9,7 +9,6 @@ namespace Installers
         [SerializeField]
         private ScoreView _scoreView;
 
-
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<ScoreService>().AsSingle();

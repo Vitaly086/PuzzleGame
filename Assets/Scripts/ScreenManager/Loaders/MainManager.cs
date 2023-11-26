@@ -1,6 +1,7 @@
 using ConfigurationProviders;
 using GameStates;
 using IngameStateMachine;
+using Score;
 using UnityEngine;
 
 namespace ScreenManager.Loaders
@@ -15,10 +16,11 @@ namespace ScreenManager.Loaders
         {
             _configurationProvider.Initialize();
             var userProfile = GetUserProfile(_configurationProvider);
-            CreateAndInitializeStateMachine(userProfile);
+            var scoreService = new ScoreService(userProfile);
+            CreateAndInitializeStateMachine(userProfile, scoreService);
         }
         
-        private void CreateAndInitializeStateMachine(UserProfile userProfile)
+        private void CreateAndInitializeStateMachine(UserProfile userProfile, IScoreService scoreService)
         {
             _stateMachine = new StateMachine
             (
@@ -26,7 +28,7 @@ namespace ScreenManager.Loaders
                 new MenuState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
                 new StoreState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
                 new LeaderboardState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
-                new GameState(userProfile)
+                new GameState(userProfile, scoreService)
             );
 
             _stateMachine.Initialize();

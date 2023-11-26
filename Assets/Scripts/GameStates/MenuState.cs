@@ -20,9 +20,18 @@ namespace GameStates
         public override void OnEnter()
         {
             SubscribeMenuButtons();
-            float rollsCount = LevelProvider.RollsCount.Value;
-            var level = LevelProvider.Level.Value;
-            var levelProgress = rollsCount / LevelSettingsProvider.GetRollsCount(level);
+            var currentRollsCount = LevelProvider.RollsCount.Value;
+            var level = LevelSettingsProvider.GetLevelByRolls(currentRollsCount);
+            float rollsForUpgrade = LevelSettingsProvider.GetRollsCount(level);
+
+            var previousLevel = level > 1 ? level - 1 : 0;
+            if (previousLevel != 0)
+            {
+                rollsForUpgrade -= LevelSettingsProvider.GetRollsCount(previousLevel);
+                currentRollsCount -= LevelSettingsProvider.GetRollsCount(previousLevel);
+            }
+
+            var levelProgress = currentRollsCount / rollsForUpgrade;
             var score = ScoreProvider.Score.Value;
             
             ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(

@@ -2,9 +2,9 @@ namespace Screens.MenuScreen
 {
     public class MenuScreenContext
     {
-        public int Level { get; set; }
-        public float LevelProgress { get; set; }
-        public int Score { get; set; }
+        public int Level { get; }
+        public float LevelProgress { get; }
+        public int Score { get; }
 
         public MenuScreenContext(int level, float levelProgress, int score)
         {

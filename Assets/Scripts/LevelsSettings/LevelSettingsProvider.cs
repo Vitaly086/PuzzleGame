@@ -41,7 +41,7 @@ public class LevelSettingsProvider : ScriptableObject, ILevelSettingsProvider
         }
 
         // Если количество бросков больше значений всех уровней - возвращаем последний
-        return _levelSettings.Length - 1;
+        return _levelSettings[^1].Id;
     }
 
     public int GetRollsCount(int id)

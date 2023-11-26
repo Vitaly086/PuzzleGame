@@ -33,9 +33,9 @@ namespace UserProgress
 
             _subscriptions = new CompositeDisposable();
 
-            var moneySubscription = userProfile.Score
+            var scoreSubscription = userProfile.Score
                 .Subscribe(PrefsManager.SaveScoreProgress);
-            _subscriptions.Add(moneySubscription);
+            _subscriptions.Add(scoreSubscription);
 
             var playerProgressSubscription = userProfile.RollsCount
                 .Subscribe(PrefsManager.SaveRollsCount);

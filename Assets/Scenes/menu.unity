@@ -949,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066ada603cf3410e830f29d097defc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreView: {fileID: 331769751}
   _levelProgressView: {fileID: 1623340943}
 --- !u!1 &1887119863
 GameObject:
