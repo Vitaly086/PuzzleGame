@@ -1,5 +1,4 @@
 using Events;
-using GameServices;
 using IngameStateMachine;
 using ScreenManager.Core;
 using Screens.MetaGameScreen;

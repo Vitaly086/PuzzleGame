@@ -1783,6 +1783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044fb77a751f4a6083e817a590dd1193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pushButton: {fileID: 1803842187}
+  _homeButton: {fileID: 1104170033}
   _scoreView: {fileID: 744127334}
 --- !u!4 &1541795924
 Transform:
