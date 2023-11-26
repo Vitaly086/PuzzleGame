@@ -796,6 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af03a39bb9eb4e81bcbaadbbb7a580fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelLabel: {fileID: 1887119865}
   _levelBackground: {fileID: 2055781666}
   _lowProgressSprite: {fileID: 21300000, guid: e1b31b85770100143a48d353bc7dd27e, type: 3}
   _mediumProgressSprite: {fileID: 21300000, guid: 6787a2547967cb14b949121c533bf0fb, type: 3}

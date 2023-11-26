@@ -11,7 +11,8 @@ namespace GameStates
     {
         private CompositeDisposable _subscriptions;
 
-        public MenuState(ILevelProvider levelProvider, ILevelSettingsProvider levelSettingsProvider) : base(
+        public MenuState(IScoreProvider scoreProvider, ILevelProvider levelProvider,
+            ILevelSettingsProvider levelSettingsProvider) : base(scoreProvider,
             levelProvider, levelSettingsProvider)
         {
         }
@@ -19,11 +20,13 @@ namespace GameStates
         public override void OnEnter()
         {
             SubscribeMenuButtons();
-            var rollsCount = LevelProvider.RollsCount.Value;
+            float rollsCount = LevelProvider.RollsCount.Value;
             var level = LevelProvider.Level.Value;
             var levelProgress = rollsCount / LevelSettingsProvider.GetRollsCount(level);
+            var score = ScoreProvider.Score.Value;
+            
             ScreensManager.OpenScreen<MenuScreen, MenuScreenContext>(
-                                    new MenuScreenContext(levelProgress));
+                new MenuScreenContext(level, levelProgress, score));
 
             _subscriptions = new CompositeDisposable
             {

@@ -22,10 +22,10 @@ namespace ScreenManager.Loaders
         {
             _stateMachine = new StateMachine
             (
-                new MetaGameState(userProfile, _configurationProvider.LevelSettingsProvider),
-                new MenuState(userProfile, _configurationProvider.LevelSettingsProvider),
-                new StoreState(userProfile, _configurationProvider.LevelSettingsProvider),
-                new LeaderboardState(userProfile, _configurationProvider.LevelSettingsProvider),
+                new MetaGameState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
+                new MenuState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
+                new StoreState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
+                new LeaderboardState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
                 new GameState(userProfile)
             );
 

@@ -17,6 +17,11 @@ namespace Score
         {
             _valueLabel.text = value.ToString();
         }
+        
+        public void UpdateView(int value)
+        {
+            _valueLabel.text = value.ToString();
+        }
     
         public void UpdateViewGradually(int currentScore, int newScore)
         {

@@ -1,7 +1,9 @@
 using UniRx;
 
-public class UserProfile : ILevelProvider
+public class UserProfile : ILevelProvider, IScoreProvider
 {
+    private const int INITIAL_LEVEL_ID = 1;
+    
     public ReactiveProperty<int> Score { get; }
     public ReactiveProperty<int> RollsCount { get; }
     public ReactiveProperty<int> Level { get; }
@@ -16,7 +18,7 @@ public class UserProfile : ILevelProvider
     public UserProfile()
     {
         Score = new ReactiveProperty<int>(0);
-        Level = new ReactiveProperty<int>(0);
+        Level = new ReactiveProperty<int>(INITIAL_LEVEL_ID);
         RollsCount = new ReactiveProperty<int>(0);
     }
 }

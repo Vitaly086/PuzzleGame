@@ -5,7 +5,8 @@ namespace GameStates
 {
     public class StoreState : MetaGameState
     {
-        public StoreState(ILevelProvider levelProvider, ILevelSettingsProvider levelSettingsProvider) : base(
+        public StoreState(IScoreProvider scoreProvider, ILevelProvider levelProvider,
+            ILevelSettingsProvider levelSettingsProvider) : base(scoreProvider,
             levelProvider, levelSettingsProvider)
         {
         }

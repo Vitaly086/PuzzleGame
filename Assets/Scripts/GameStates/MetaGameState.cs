@@ -10,14 +10,17 @@ namespace GameStates
     public class MetaGameState : IState
     {
         protected StateMachine StateMachine;
+        protected readonly IScoreProvider ScoreProvider;
         protected readonly ILevelProvider LevelProvider;
         protected readonly ILevelSettingsProvider LevelSettingsProvider;
         private CompositeDisposable _subscriptions;
 
-        public MetaGameState(ILevelProvider levelProvider, ILevelSettingsProvider levelSettingsProvider)
+        public MetaGameState(IScoreProvider scoreProvider, ILevelProvider levelProvider,
+            ILevelSettingsProvider levelSettingsProvider)
         {
             LevelProvider = levelProvider;
             LevelSettingsProvider = levelSettingsProvider;
+            ScoreProvider = scoreProvider;
         }
 
         public void Initialize(StateMachine stateMachine)

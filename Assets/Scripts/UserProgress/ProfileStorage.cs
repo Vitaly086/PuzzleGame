@@ -19,11 +19,11 @@ namespace UserProgress
 
         public UserProfile GetLastUserProfile()
         {
-            var userMoney = PrefsManager.LoadScore();
+            var userScore = PrefsManager.LoadScore();
             var rollsCount = PrefsManager.LoadRollsCount();
             var level = _configurationProvider.LevelSettingsProvider.GetLevelByRolls(rollsCount);
 
-            var userProfile = new UserProfile(userMoney, level, rollsCount);
+            var userProfile = new UserProfile(userScore, level, rollsCount);
             return userProfile;
         }
 
