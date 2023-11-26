@@ -5,8 +5,8 @@ namespace GameServices
     public interface IPlayerProgressService
     {
         IReadOnlyReactiveProperty<int> GetCurrentLevel();
-        float GetCurrentLevelProgress();
+        int GetCurrentLevelRollsCount();
         void MarkCurrentLevelAsPassed();
-        void UpdateLevelProgress(float progress);
+        void UpdateRollsCount(int count);
     }
 }

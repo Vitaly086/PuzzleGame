@@ -8,8 +8,16 @@ namespace GameStates
 {
     public class GameState :IState
     {
+        private ILevelProvider _levelProvider;
+        private ILevelSettingsProvider _levelSettingsProvider;
+        
         private StateMachine _stateMachine;
         private CompositeDisposable _subscriptions;
+
+        public GameState(ILevelProvider levelProvider)
+        {
+            _levelProvider = levelProvider;
+        }
     
         public void Initialize(StateMachine stateMachine)
         {
@@ -21,10 +29,16 @@ namespace GameStates
             ScreensManager.OpenScreen<GameScreen, GameScreenContext>(new GameScreenContext());
             _subscriptions = new CompositeDisposable
             {
-                EventStreams.UserInterface.Subscribe<MenuButtonPressedEvent>(EnterMetaGameState)
+                EventStreams.UserInterface.Subscribe<MenuButtonPressedEvent>(EnterMetaGameState),
+                EventStreams.UserInterface.Subscribe<DicePushed>(UpdateLevelProgress)
             };
         }
-    
+
+        private void UpdateLevelProgress(DicePushed obj)
+        {
+            _levelProvider.RollsCount.Value++;
+        }
+
         private void EnterMetaGameState(MenuButtonPressedEvent obj)
         {
             ScreensManager.CloseScreen<GameScreen>();

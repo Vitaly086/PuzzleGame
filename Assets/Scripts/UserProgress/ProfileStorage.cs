@@ -20,9 +20,10 @@ namespace UserProgress
         public UserProfile GetLastUserProfile()
         {
             var userMoney = PrefsManager.LoadScore();
-            var userProgress = PrefsManager.LoadPlayerProgress();
+            var rollsCount = PrefsManager.LoadRollsCount();
+            var level = _configurationProvider.LevelSettingsProvider.GetLevelByRolls(rollsCount);
 
-            var userProfile = new UserProfile(userMoney, userProgress);
+            var userProfile = new UserProfile(userMoney, level, rollsCount);
             return userProfile;
         }
 
@@ -36,8 +37,8 @@ namespace UserProgress
                 .Subscribe(PrefsManager.SaveScoreProgress);
             _subscriptions.Add(moneySubscription);
 
-            var playerProgressSubscription = userProfile.Level
-                .Subscribe(PrefsManager.SavePlayerProgress);
+            var playerProgressSubscription = userProfile.RollsCount
+                .Subscribe(PrefsManager.SaveRollsCount);
             _subscriptions.Add(playerProgressSubscription);
         }
 

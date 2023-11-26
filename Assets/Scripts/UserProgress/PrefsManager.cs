@@ -3,7 +3,7 @@
 public class PrefsManager
 {
     private const string SCORE_KEY = "Money";
-    private const string LEVEL_KEY = "Level";
+    private const string ROLLS_COUNT = "LevelProgress";
         
     public static bool HasUserProfile()
     {
@@ -21,14 +21,15 @@ public class PrefsManager
         PlayerPrefs.Save();
     }
 
-    public static int LoadPlayerProgress()
+    public static int LoadRollsCount()
     {
-        return PlayerPrefs.GetInt(LEVEL_KEY);
+        return PlayerPrefs.GetInt(ROLLS_COUNT);
     }
         
-    public static void SavePlayerProgress(int id)
+    // Количество бросков
+    public static void SaveRollsCount(int rollsCount)
     {
-        PlayerPrefs.SetInt(LEVEL_KEY, id);
+        PlayerPrefs.SetInt(ROLLS_COUNT, rollsCount);
         PlayerPrefs.Save();
     }
 }

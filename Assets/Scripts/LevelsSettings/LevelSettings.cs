@@ -9,11 +9,11 @@ using UnityEngine;
 public class LevelSettings 
 {
     public int Id => _id;
-    public string Name => _name;
+    public int RollsForUpgrade => _rollsForUpgrade;
 
     [SerializeField]
     private int _id;
     
     [SerializeField]
-    private string _name;
+    private int _rollsForUpgrade;
 }

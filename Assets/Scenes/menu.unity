@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 1623340941}
   - component: {fileID: 1623340940}
   - component: {fileID: 1623340942}
+  - component: {fileID: 1623340943}
   m_Layer: 5
   m_Name: Level Bar
   m_TagString: Untagged
@@ -783,6 +784,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1623340943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623340938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af03a39bb9eb4e81bcbaadbbb7a580fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelBackground: {fileID: 2055781666}
+  _lowProgressSprite: {fileID: 21300000, guid: e1b31b85770100143a48d353bc7dd27e, type: 3}
+  _mediumProgressSprite: {fileID: 21300000, guid: 6787a2547967cb14b949121c533bf0fb, type: 3}
+  _highProgressSprite: {fileID: 21300000, guid: 6ca243f734786104fa9220b90f5d4fa0, type: 3}
 --- !u!1 &1672195245
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066ada603cf3410e830f29d097defc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelProgressView: {fileID: 1623340943}
 --- !u!1 &1887119863
 GameObject:
   m_ObjectHideFlags: 0

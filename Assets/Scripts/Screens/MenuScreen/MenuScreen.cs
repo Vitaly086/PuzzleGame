@@ -12,6 +12,7 @@ namespace Screens.MenuScreen
         public override void Initialize(MenuScreenContext context)
         {
             EventStreams.UserInterface.Publish(new OpenMenuEvent());
+            _levelProgressView.SetSprite(context.LevelProgress);
         }
 
         [UsedImplicitly]

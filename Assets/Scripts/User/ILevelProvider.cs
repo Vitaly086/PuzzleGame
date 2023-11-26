@@ -3,5 +3,5 @@
 public interface ILevelProvider
 {
     ReactiveProperty<int> Level { get; }
-    ReactiveProperty<float> LevelProgress { get; }
+    ReactiveProperty<int> RollsCount { get; }
 }

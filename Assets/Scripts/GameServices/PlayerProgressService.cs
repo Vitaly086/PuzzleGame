@@ -23,9 +23,9 @@ namespace GameServices
             return _levelsProvider.Level;
         }
         
-        public float GetCurrentLevelProgress()
+        public int GetCurrentLevelRollsCount()
         {
-            return _levelsProvider.LevelProgress.Value;
+            return _levelsProvider.RollsCount.Value;
         }
         
         public void MarkCurrentLevelAsPassed()
@@ -40,10 +40,10 @@ namespace GameServices
 
             level.Value++;
         }
-
-        public void UpdateLevelProgress(float progress)
+        
+        public void UpdateRollsCount(int rollsCount)
         {
-            _levelsProvider.LevelProgress.Value = progress;
+            _levelsProvider.RollsCount.Value = rollsCount;
         }
         
         private bool IsLastLevel(int level)

@@ -2,6 +2,7 @@
 
 public interface ILevelSettingsProvider
 {
-    string GetName(int id);
+    int GetLevelByRolls(int rolls);
+    int GetRollsCount(int id);
     bool IsLastLevel(int level);
 }

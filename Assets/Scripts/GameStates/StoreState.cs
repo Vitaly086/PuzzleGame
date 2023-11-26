@@ -5,6 +5,11 @@ namespace GameStates
 {
     public class StoreState : MetaGameState
     {
+        public StoreState(ILevelProvider levelProvider, ILevelSettingsProvider levelSettingsProvider) : base(
+            levelProvider, levelSettingsProvider)
+        {
+        }
+
         public override void OnEnter()
         {
             SubscribeMenuButtons();
