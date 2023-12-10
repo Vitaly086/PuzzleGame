@@ -1,5 +1,6 @@
 using GameCore.Dice;
 using Score;
+using UnityEngine;
 
 /// <summary>
 /// Класс, через который апгрейдятся характеристики
@@ -24,7 +25,7 @@ public class FaceUpgradeService
         }
 
         _scoreService.Pay(upgradeCost);
-        _diceFacesSettings.AddValue(faceIndex,spell.Value);
+        _diceFacesSettings.AddValue(faceIndex, spell.Value);
     }
 
     private bool CanUpgrade(int cost)

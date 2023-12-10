@@ -16,7 +16,7 @@ namespace GameCore.Dice
             DiceFaces[index].Value = value;
         }
         
-        public void AddValue(int value, int index)
+        public void AddValue(int index, int value)
         {
             DiceFaces[index].Value += value;
         }

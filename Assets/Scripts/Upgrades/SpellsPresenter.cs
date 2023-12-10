@@ -31,5 +31,7 @@ public class SpellsPresenter : MonoBehaviour
         {
             Destroy(spellButtonPresenter.gameObject);
         }
+        
+        _spellButtonPresenters.Clear();
     }
 }

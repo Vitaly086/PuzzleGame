@@ -2,11 +2,12 @@ using Score;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SpellButtonPresenter : MonoBehaviour
 {
-    [SerializeField] private Button _upgradeCharacteristicButton;
+    [SerializeField] private Button _upgradeFaceButton;
     [SerializeField] private TextMeshProUGUI _valueLabel;
     [SerializeField] private TextMeshProUGUI _costLabel;
 
@@ -24,7 +25,7 @@ public class SpellButtonPresenter : MonoBehaviour
         _faceIndex = faceIndex;
         _spell = spell;
 
-        _upgradeCharacteristicButton
+        _upgradeFaceButton
             .OnClickAsObservable()
             .Subscribe(_ => faceUpgradeService.UpgradeFace(_faceIndex, _spell))
             .AddTo(this);
@@ -37,7 +38,7 @@ public class SpellButtonPresenter : MonoBehaviour
             .RefCount();
 
         hasEnoughMoney
-            .SubscribeToInteractable(_upgradeCharacteristicButton)
+            .SubscribeToInteractable(_upgradeFaceButton)
             .AddTo(this);
     }
 

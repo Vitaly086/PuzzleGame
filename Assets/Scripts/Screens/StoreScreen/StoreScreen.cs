@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Events;
 using GameCore.Dice;
 using JetBrains.Annotations;
@@ -7,7 +8,6 @@ using ScreenManager.Core;
 using Screens.MenuScreen;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Screens.StoreScreen
 {
@@ -28,10 +28,11 @@ namespace Screens.StoreScreen
 
         private IScoreService _scoreService;
         private GameObject _currentScreen;
-        private Stack<GameObject> _openedScreensStack = new ();
+        private Stack<GameObject> _openedScreensStack = new();
 
         public override void Initialize(StoreScreenContext context)
         {
+            _openedScreensStack.Clear();
             _currentScreen = DicesScreen;
             
             EventStreams.UserInterface.Publish(new OpenStoreEvent());
@@ -43,7 +44,9 @@ namespace Screens.StoreScreen
 
             _scoreService.Score.Subscribe(UpdateScoreView).AddTo(this);
 
+            _diceFacesPresenter.FaceButtonClicked += OpenSpellsScreen;
             _diceHandPresenter.DiceButtonCreated += SubscribeDiceButtonClick;
+            
             _diceHandPresenter.Initialize(_handWithDices);
         }
 
@@ -53,6 +56,8 @@ namespace Screens.StoreScreen
             // Достаем предыдущий экран
             var previousScreen = _openedScreensStack.Pop();
             ChangeStoreScreen(previousScreen);
+            
+            Debug.LogError(_openedScreensStack.Count);
         }
 
         private void UpdateScoreView(int newScore)
@@ -74,13 +79,14 @@ namespace Screens.StoreScreen
             ChangeStoreScreen(FacesScreen);
 
             _diceFacesPresenter.Initialize(diceFacesSettings);
-            _diceFacesPresenter.FaceButtonClicked += OpenSpellsScreen;
         }
 
         private void OpenSpellsScreen(DiceFacesSettings diceFacesSettings, int faceIndex)
         {
             // Кладем в стек предыдущий открытый экран
             _openedScreensStack.Push(_currentScreen);
+            Debug.LogError("Add " + _currentScreen);
+            
             ChangeStoreScreen(SpellsScreen);
 
             var faceUpgradeService = new FaceUpgradeService(diceFacesSettings, _scoreService);
@@ -95,8 +101,9 @@ namespace Screens.StoreScreen
             _backButton.SetActive(_currentScreen != DicesScreen);
         }
 
-        public void OnDisable()
+        private void OnDisable()
         {
+            _diceFacesPresenter.FaceButtonClicked -= OpenSpellsScreen;
             _diceHandPresenter.DiceButtonCreated -= SubscribeDiceButtonClick;
         }
     }

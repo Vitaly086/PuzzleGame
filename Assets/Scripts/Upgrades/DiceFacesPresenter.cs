@@ -11,20 +11,12 @@ public class DiceFacesPresenter : MonoBehaviour
     public event Action<DiceFacesSettings, int> FaceButtonClicked;
     [SerializeField] private FaceButtonPresenter[] facesPresenters;
     private DiceFacesSettings _diceFacesSettings;
-    private List<FaceButtonPresenter> _faceButtonPresenters = new ();
+    private List<FaceButtonPresenter> _faceButtonPresenters = new();
     
     public void Initialize(DiceFacesSettings diceFacesSettings)
     {
         _diceFacesSettings = diceFacesSettings;
         SetFacesValues(diceFacesSettings);
-    }
-
-    private void OnEnable()
-    {
-        if (_diceFacesSettings)
-        {
-            SetFacesValues(_diceFacesSettings);
-        }
     }
 
     private void SetFacesValues(DiceFacesSettings diceFacesSettings)
@@ -37,9 +29,12 @@ public class DiceFacesPresenter : MonoBehaviour
             facePresenter.Initialize(faces[i].Value);
 
             _faceButtonPresenters.Add(facePresenter);
+            
             var index = i;
             facePresenter.Button.onClick.AddListener(() => OnFaceButtonClicked(index));
         }
+        
+        Debug.LogError("Подписка на кнопки граней");
     }
 
     private void OnFaceButtonClicked(int index)
@@ -55,5 +50,7 @@ public class DiceFacesPresenter : MonoBehaviour
             var index = i;
             facePresenter.Button.onClick.RemoveListener(() => OnFaceButtonClicked(index));
         }
+        
+        Debug.LogError("Отписка от кнопки граней");
     }
 }
