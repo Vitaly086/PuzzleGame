@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GameCore.Dice;
 using UnityEngine;
 
@@ -10,23 +11,49 @@ public class DiceFacesPresenter : MonoBehaviour
     public event Action<DiceFacesSettings, int> FaceButtonClicked;
     [SerializeField] private FaceButtonPresenter[] facesPresenters;
     private DiceFacesSettings _diceFacesSettings;
+    private List<FaceButtonPresenter> _faceButtonPresenters = new ();
     
     public void Initialize(DiceFacesSettings diceFacesSettings)
     {
         _diceFacesSettings = diceFacesSettings;
+        SetFacesValues(diceFacesSettings);
+    }
+
+    private void OnEnable()
+    {
+        if (_diceFacesSettings)
+        {
+            SetFacesValues(_diceFacesSettings);
+        }
+    }
+
+    private void SetFacesValues(DiceFacesSettings diceFacesSettings)
+    {
         var faces = diceFacesSettings.DiceFaces;
-        
+
         for (var i = 0; i < facesPresenters.Length; i++)
         {
             var facePresenter = facesPresenters[i];
             facePresenter.Initialize(faces[i].Value);
-            
-            facePresenter.Button.onClick.AddListener(() => OnFaceButtonClicked(i));
+
+            _faceButtonPresenters.Add(facePresenter);
+            var index = i;
+            facePresenter.Button.onClick.AddListener(() => OnFaceButtonClicked(index));
         }
     }
 
     private void OnFaceButtonClicked(int index)
     {
         FaceButtonClicked?.Invoke(_diceFacesSettings, index);
+    }
+
+    private void OnDisable()
+    {
+        for (var i = 0; i < _faceButtonPresenters.Count; i++)
+        {
+            var facePresenter = _faceButtonPresenters[i];
+            var index = i;
+            facePresenter.Button.onClick.RemoveListener(() => OnFaceButtonClicked(index));
+        }
     }
 }

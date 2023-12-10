@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Score;
 using UnityEngine;
 
@@ -9,6 +11,7 @@ public class SpellsPresenter : MonoBehaviour
     [SerializeField] private SpellsProvider _spellsProvider;
     [SerializeField] private SpellButtonPresenter _spellButtonButtonPrefab;
     [SerializeField] private Transform _root;
+    private List<SpellButtonPresenter> _spellButtonPresenters = new();
 
     public void Initialize(FaceUpgradeService faceUpgradeService, IScoreService scoreService,
         int faceIndex)
@@ -18,6 +21,15 @@ public class SpellsPresenter : MonoBehaviour
         {
             var spellButton = Instantiate(_spellButtonButtonPrefab, _root);
             spellButton.Initialize(faceUpgradeService, scoreService, faceIndex, spell);
+            _spellButtonPresenters.Add(spellButton);
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var spellButtonPresenter in _spellButtonPresenters)
+        {
+            Destroy(spellButtonPresenter.gameObject);
         }
     }
 }
