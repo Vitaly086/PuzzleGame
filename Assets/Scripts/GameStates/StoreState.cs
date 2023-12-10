@@ -16,8 +16,13 @@ namespace GameStates
         public override void OnEnter()
         {
             SubscribeMenuButtons();
+            
+            var currentRollsCount = LevelProvider.RollsCount.Value;
+            var level = LevelSettingsProvider.GetLevelByRolls(currentRollsCount);
+
+            var levelProgress = LevelSettingsProvider.GetLevelProgress(level, currentRollsCount);
             var score = ScoreProvider.Score.Value;
-            ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext(score));
+            ScreensManager.OpenScreen<StoreScreen, StoreScreenContext>(new StoreScreenContext(level, levelProgress, score));
         }
 
         public override void OnExit()
