@@ -11,9 +11,12 @@ public class DiceHandPresenter : MonoBehaviour
     [SerializeField] private Transform _root;
     [SerializeField] private DiceFacesSettings _defaultSettings;
     [SerializeField] private DiceButtonPresenter _diceButtonPrefab;
+    private HandWithDices _handWithDices;
+    private DiceButtonPresenter _creationNewDiceButton;
     
     public void Initialize(HandWithDices handWithDices)
     {
+        _handWithDices = handWithDices;
         var dicesSettings = handWithDices.GetDices();
         for (var i = 0; i < dicesSettings.Count; i++)
         {
@@ -22,9 +25,18 @@ public class DiceHandPresenter : MonoBehaviour
             DiceButtonCreated?.Invoke(diceButton);
         }
         
-        var creationNewDiceButton = Instantiate(_diceButtonPrefab, _root);
-        
-        handWithDices.AddDice();
-        creationNewDiceButton.Initialize(_defaultSettings, "+");
+        _creationNewDiceButton = Instantiate(_diceButtonPrefab, _root);
+        _creationNewDiceButton.Initialize(_defaultSettings, "+");
+        _creationNewDiceButton.Button.onClick.AddListener(AddDiceToHand);
+    }
+
+    private void AddDiceToHand()
+    {
+        _handWithDices.AddDice();
+    }
+
+    private void OnDisable()
+    {
+        _creationNewDiceButton.Button.onClick.RemoveListener(AddDiceToHand);
     }
 }

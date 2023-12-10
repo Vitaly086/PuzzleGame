@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameCore.Dice;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Второе окно магазина - в котором все грани одного кубика
@@ -12,6 +13,7 @@ public class DiceFacesPresenter : MonoBehaviour
     [SerializeField] private FaceButtonPresenter[] facesPresenters;
     private DiceFacesSettings _diceFacesSettings;
     private List<FaceButtonPresenter> _faceButtonPresenters = new();
+    private List<UnityAction> _faceButtonActions = new(); // Список для хранения действий
     
     public void Initialize(DiceFacesSettings diceFacesSettings)
     {
@@ -29,12 +31,12 @@ public class DiceFacesPresenter : MonoBehaviour
             facePresenter.Initialize(faces[i].Value);
 
             _faceButtonPresenters.Add(facePresenter);
-            
-            var index = i;
-            facePresenter.Button.onClick.AddListener(() => OnFaceButtonClicked(index));
-        }
         
-        Debug.LogError("Подписка на кнопки граней");
+            var index = i;
+            UnityAction action = () => OnFaceButtonClicked(index);
+            facePresenter.Button.onClick.AddListener(action);
+            _faceButtonActions.Add(action); // Сохраняем действие
+        }
     }
 
     private void OnFaceButtonClicked(int index)
@@ -47,10 +49,11 @@ public class DiceFacesPresenter : MonoBehaviour
         for (var i = 0; i < _faceButtonPresenters.Count; i++)
         {
             var facePresenter = _faceButtonPresenters[i];
-            var index = i;
-            facePresenter.Button.onClick.RemoveListener(() => OnFaceButtonClicked(index));
+            var action = _faceButtonActions[i];
+            facePresenter.Button.onClick.RemoveListener(action);
         }
-        
-        Debug.LogError("Отписка от кнопки граней");
+    
+        _faceButtonPresenters.Clear();
+        _faceButtonActions.Clear(); // Очищаем список действий
     }
 }

@@ -44,9 +44,9 @@ namespace Screens.StoreScreen
 
             _scoreService.Score.Subscribe(UpdateScoreView).AddTo(this);
 
-            _diceFacesPresenter.FaceButtonClicked += OpenSpellsScreen;
             _diceHandPresenter.DiceButtonCreated += SubscribeDiceButtonClick;
-            
+            _diceFacesPresenter.FaceButtonClicked += OpenSpellsScreen;
+
             _diceHandPresenter.Initialize(_handWithDices);
         }
 
@@ -56,8 +56,6 @@ namespace Screens.StoreScreen
             // Достаем предыдущий экран
             var previousScreen = _openedScreensStack.Pop();
             ChangeStoreScreen(previousScreen);
-            
-            Debug.LogError(_openedScreensStack.Count);
         }
 
         private void UpdateScoreView(int newScore)
@@ -85,7 +83,6 @@ namespace Screens.StoreScreen
         {
             // Кладем в стек предыдущий открытый экран
             _openedScreensStack.Push(_currentScreen);
-            Debug.LogError("Add " + _currentScreen);
             
             ChangeStoreScreen(SpellsScreen);
 

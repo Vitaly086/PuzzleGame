@@ -1,6 +1,5 @@
 using GameCore.Dice;
 using Score;
-using UnityEngine;
 
 /// <summary>
 /// Класс, через который апгрейдятся характеристики
