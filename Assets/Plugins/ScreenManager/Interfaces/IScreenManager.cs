@@ -1,5 +1,4 @@
-﻿using System;
-using ScreenManager.Enums;
+﻿using ScreenManager.Enums;
 
 namespace ScreenManager.Interfaces
 {

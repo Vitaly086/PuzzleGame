@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using MicroRx.Core;
 using ScreenManager.Interfaces;
 
 namespace ScreenManager

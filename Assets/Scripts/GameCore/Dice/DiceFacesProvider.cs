@@ -11,7 +11,6 @@ namespace GameCore.Dice
         [SerializeField]
         private GameObject _commonFacePrefab;
 
-
         public GameObject GetFacePrefab(int faceValue)
         {
             switch (faceValue)

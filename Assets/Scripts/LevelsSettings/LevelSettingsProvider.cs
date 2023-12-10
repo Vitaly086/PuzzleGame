@@ -54,4 +54,22 @@ public class LevelSettingsProvider : ScriptableObject, ILevelSettingsProvider
     {
         return level >= _levelSettings.Length;
     }
+
+    public float GetLevelProgress(int level, int currentRollsCount)
+    {
+        float rollsForUpgrade = GetRollsCount(level);
+        
+        
+        // Если есть предыдущий уровень
+        var previousLevel = level > 1 ? level - 1 : 0;
+        if (previousLevel != 0)
+        {
+            // находим количество бросков чисто на текущем уровне (за вычетом предыдущих)
+            // Для правильного расчета прогресса текущего уровня
+            rollsForUpgrade -= GetRollsCount(previousLevel);
+            currentRollsCount -= GetRollsCount(previousLevel);
+        }
+
+        return currentRollsCount / rollsForUpgrade;
+    }
 }

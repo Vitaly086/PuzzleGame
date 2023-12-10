@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace GameCore.Dice
 {
+    /// <summary>
+    /// Грани одного кубика
+    /// </summary>
     [CreateAssetMenu(fileName = "DiceFacesSettings", menuName = "Dice/DiceFacesSettings")]
     public class DiceFacesSettings : ScriptableObject
     {
@@ -11,6 +14,11 @@ namespace GameCore.Dice
         public void SetValue(int value, int index)
         {
             DiceFaces[index].Value = value;
+        }
+        
+        public void AddValue(int index, int value)
+        {
+            DiceFaces[index].Value += value;
         }
 
         public int GetValue(int index)
