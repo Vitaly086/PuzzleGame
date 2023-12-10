@@ -18,7 +18,18 @@ public class DiceFacesPresenter : MonoBehaviour
     public void Initialize(DiceFacesSettings diceFacesSettings)
     {
         _diceFacesSettings = diceFacesSettings;
-        SetFacesValues(diceFacesSettings);
+        SetFacesValues(_diceFacesSettings);
+    }
+
+    private void OnEnable()
+    {
+        if (!_diceFacesSettings)
+        {
+            return;
+        }
+        
+        _faceButtonPresenters.Clear();
+        SetFacesValues(_diceFacesSettings);
     }
 
     private void SetFacesValues(DiceFacesSettings diceFacesSettings)
