@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using MicroRx.Core;
 using ScreenManager.Interfaces;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace ScreenManager
 {

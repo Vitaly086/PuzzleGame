@@ -10,6 +10,7 @@ namespace Screens.StoreScreen
     {
         [SerializeField] private ScoreView _scoreView;
         [SerializeField] private LevelProgressView _levelProgressView;
+        [SerializeField] private DiceHandPresenter _diceHandPresenter;
         
         public override void Initialize(StoreScreenContext context)
         {
@@ -18,6 +19,8 @@ namespace Screens.StoreScreen
             _levelProgressView.SetLevelValue(context.Level);
             _levelProgressView.SetSprite(context.LevelProgress);
             _scoreView.UpdateView(context.Score);
+
+            _diceHandPresenter.Initialize();
         }
     }
 }

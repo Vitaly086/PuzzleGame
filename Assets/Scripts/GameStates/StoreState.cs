@@ -1,7 +1,5 @@
-using Score;
 using ScreenManager.Core;
 using Screens.StoreScreen;
-using UnityEngine;
 
 namespace GameStates
 {

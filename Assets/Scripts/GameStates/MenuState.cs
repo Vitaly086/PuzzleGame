@@ -3,7 +3,6 @@ using ScreenManager.Core;
 using Screens.MenuScreen;
 using Screens.MetaGameScreen;
 using SimpleEventBus.Disposables;
-using UnityEngine;
 
 namespace GameStates
 {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public interface ILevelSettingsProvider
+﻿public interface ILevelSettingsProvider
 {
     int GetLevelByRolls(int rolls);
     int GetRollsCount(int id);
