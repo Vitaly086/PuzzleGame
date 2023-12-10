@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &132653241529160783
+--- !u!1 &1418722487465565205
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3878578318130004708}
-  - component: {fileID: 9150251375451508377}
-  - component: {fileID: 8790760493394972462}
+  - component: {fileID: 4563190778932507622}
+  - component: {fileID: 4411832293723326302}
+  - component: {fileID: 118830761983355683}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -18,40 +18,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3878578318130004708
+--- !u!224 &4563190778932507622
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132653241529160783}
+  m_GameObject: {fileID: 1418722487465565205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4889083489932502741}
+  m_Father: {fileID: 7899766672369830000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &9150251375451508377
+--- !u!222 &4411832293723326302
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132653241529160783}
+  m_GameObject: {fileID: 1418722487465565205}
   m_CullTransparentMesh: 1
---- !u!114 &8790760493394972462
+--- !u!114 &118830761983355683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132653241529160783}
+  m_GameObject: {fileID: 1418722487465565205}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8666255416595079621
+--- !u!1 &2523905095952215073
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,53 +142,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4889083489932502741}
-  - component: {fileID: 825665932983203880}
-  - component: {fileID: 1283690579970803942}
-  - component: {fileID: 6714443404207228550}
-  - component: {fileID: 4994494988571152496}
+  - component: {fileID: 7899766672369830000}
+  - component: {fileID: 2139292785191717447}
+  - component: {fileID: 4825346652145123920}
+  - component: {fileID: 4633950201840802260}
+  - component: {fileID: 8724914100224682373}
   m_Layer: 5
-  m_Name: DiceButton
+  m_Name: FaceButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4889083489932502741
+--- !u!224 &7899766672369830000
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666255416595079621}
+  m_GameObject: {fileID: 2523905095952215073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3878578318130004708}
+  - {fileID: 4563190778932507622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75.7179, y: -10.333}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &825665932983203880
+--- !u!222 &2139292785191717447
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666255416595079621}
+  m_GameObject: {fileID: 2523905095952215073}
   m_CullTransparentMesh: 1
---- !u!114 &1283690579970803942
+--- !u!114 &4825346652145123920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666255416595079621}
+  m_GameObject: {fileID: 2523905095952215073}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -212,13 +212,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6714443404207228550
+--- !u!114 &4633950201840802260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666255416595079621}
+  m_GameObject: {fileID: 2523905095952215073}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -252,21 +252,21 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1283690579970803942}
+  m_TargetGraphic: {fileID: 4825346652145123920}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4994494988571152496
+--- !u!114 &8724914100224682373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666255416595079621}
+  m_GameObject: {fileID: 2523905095952215073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2146a9dd91534785afc8332859baca6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d4a00ad06644417aa759f08a6110949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Button: {fileID: 6714443404207228550}
-  _titleLabel: {fileID: 8790760493394972462}
+  Button: {fileID: 4633950201840802260}
+  _valueLabel: {fileID: 118830761983355683}

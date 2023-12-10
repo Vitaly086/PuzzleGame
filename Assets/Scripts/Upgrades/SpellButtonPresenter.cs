@@ -4,10 +4,11 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeFaceButtonPresenter : MonoBehaviour
+public class SpellButtonPresenter : MonoBehaviour
 {
     [SerializeField] private Button _upgradeCharacteristicButton;
-    [SerializeField] private TextMeshProUGUI _upgradeCost;
+    [SerializeField] private TextMeshProUGUI _valueLabel;
+    [SerializeField] private TextMeshProUGUI _costLabel;
 
     private IScoreService _scoreService;
     private int _faceIndex;
@@ -16,6 +17,9 @@ public class UpgradeFaceButtonPresenter : MonoBehaviour
     public void Initialize(FaceUpgradeService faceUpgradeService, IScoreService scoreService,
         int faceIndex, Spell spell)
     {
+        _valueLabel.text = $"+ {spell.Value}";
+        _costLabel.text = spell.Cost.ToString();
+        
         _scoreService = scoreService;
         _faceIndex = faceIndex;
         _spell = spell;

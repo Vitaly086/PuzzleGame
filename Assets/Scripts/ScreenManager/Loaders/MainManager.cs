@@ -17,6 +17,7 @@ namespace ScreenManager.Loaders
             _configurationProvider.Initialize();
             var userProfile = GetUserProfile(_configurationProvider);
             var scoreService = new ScoreService(userProfile);
+            
             CreateAndInitializeStateMachine(userProfile, scoreService);
         }
         
@@ -26,7 +27,7 @@ namespace ScreenManager.Loaders
             (
                 new MetaGameState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
                 new MenuState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
-                new StoreState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
+                new StoreState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider, scoreService),
                 new LeaderboardState(userProfile, userProfile, _configurationProvider.LevelSettingsProvider),
                 new GameState(userProfile, scoreService)
             );

@@ -3,5 +3,5 @@
 [CreateAssetMenu(fileName = "SpellsProvider", menuName = "ScriptableObjects/SpellsProvider")]
 public class SpellsProvider : ScriptableObject
 {
-    [field: SerializeField] private Spell[] Spells { get; set; }
+    [field: SerializeField] public Spell[] Spells { get; set; }
 }

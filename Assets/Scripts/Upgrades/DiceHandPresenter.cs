@@ -1,27 +1,30 @@
+using System;
 using GameCore.Dice;
 using UnityEngine;
+
 /// <summary>
 /// Первое окно магазина - в котором все кубики и покупка кубика
 /// </summary>
 public class DiceHandPresenter : MonoBehaviour
 {
+    public event Action<DiceButtonPresenter> DiceButtonCreated; 
     [SerializeField] private Transform _root;
     [SerializeField] private DiceFacesSettings _defaultSettings;
     [SerializeField] private DiceButtonPresenter _diceButtonPrefab;
-    [SerializeField] private HandWithDices _handWithDices; // Пока захардкожено
-
-    public void Initialize()
+    
+    public void Initialize(HandWithDices handWithDices)
     {
-        var dicesSettings = _handWithDices.GetDices();
+        var dicesSettings = handWithDices.GetDices();
         for (var i = 0; i < dicesSettings.Count; i++)
         {
             var diceButton = Instantiate(_diceButtonPrefab, _root);
             diceButton.Initialize(dicesSettings[i], (i + 1).ToString());
+            DiceButtonCreated?.Invoke(diceButton);
         }
         
         var creationNewDiceButton = Instantiate(_diceButtonPrefab, _root);
         
-        _handWithDices.AddDice();
+        handWithDices.AddDice();
         creationNewDiceButton.Initialize(_defaultSettings, "+");
     }
 }

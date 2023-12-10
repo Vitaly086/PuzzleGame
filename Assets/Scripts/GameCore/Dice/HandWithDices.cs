@@ -9,7 +9,7 @@ public class HandWithDices
     // TODO: Надо хранить кубики в префсах и на старте сетить сюда кубики с актуальными характеристиками
     [SerializeField] private List<DiceFacesSettings> Dices;
 
-    public IReadOnlyList<DiceFacesSettings> GetDices()
+    public List<DiceFacesSettings> GetDices()
     {
         return Dices;
     }
