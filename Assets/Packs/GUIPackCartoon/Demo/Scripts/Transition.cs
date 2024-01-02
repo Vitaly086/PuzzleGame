@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace GUIPackCartoon.Demo.Scripts
+namespace Packs.GUIPackCartoon.Demo.Scripts
 {
     // This class is responsible for managing the transitions between scenes that are performed
     // in the demo via a classic fade.

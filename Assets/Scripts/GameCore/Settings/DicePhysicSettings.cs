@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameCore.Dice
+namespace GameCore.Settings
 {
     [CreateAssetMenu(fileName = "DicePhysicSettings", menuName = "Dice/DicePhysicSettings")]
     public class DicePhysicSettings : ScriptableObject

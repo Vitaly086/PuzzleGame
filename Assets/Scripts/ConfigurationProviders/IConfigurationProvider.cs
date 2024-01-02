@@ -1,4 +1,6 @@
-﻿namespace ConfigurationProviders
+﻿using LevelsSettings;
+
+namespace ConfigurationProviders
 {
     public interface IConfigurationProvider
     {

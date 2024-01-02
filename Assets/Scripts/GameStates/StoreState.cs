@@ -1,7 +1,8 @@
-using GameCore.Dice;
-using Score;
+using GameServices;
+using LevelsSettings;
 using ScreenManager.Core;
 using Screens.StoreScreen;
+using User;
 
 namespace GameStates
 {

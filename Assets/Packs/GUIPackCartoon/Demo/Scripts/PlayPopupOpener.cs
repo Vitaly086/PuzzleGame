@@ -4,7 +4,7 @@
 
 using UnityEngine;
 
-namespace GUIPackCartoon.Demo.Scripts
+namespace Packs.GUIPackCartoon.Demo.Scripts
 {
     // Specialized version of the PopupOpener class that opens the PlayPopup popup
     // and sets an appropriate number of stars (that can be configured from within the

@@ -1,7 +1,10 @@
-﻿public interface ILevelSettingsProvider
+﻿namespace LevelsSettings
 {
-    int GetLevelByRolls(int rolls);
-    int GetRollsCount(int id);
-    bool IsLastLevel(int level);
-    float GetLevelProgress(int level, int currentRollsCount);
+    public interface ILevelSettingsProvider
+    {
+        int GetLevelByRolls(int rolls);
+        int GetRollsCount(int id);
+        bool IsLastLevel(int level);
+        float GetLevelProgress(int level, int currentRollsCount);
+    }
 }

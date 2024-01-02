@@ -1,6 +1,7 @@
 using UniRx;
+using User;
 
-namespace Score
+namespace GameServices
 {
     public class ScoreService : IScoreService
     {

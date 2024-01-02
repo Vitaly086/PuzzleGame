@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae36a0063db4a1d800d0287c78ba4a0, type: 3}
-  m_Name: DIceHandConfigProvider
+  m_Script: {fileID: 11500000, guid: 4bebab9ef44b4f0f87a9559bddd6e3d1, type: 3}
+  m_Name: DicePrefabLibrary
   m_EditorClassIdentifier: 
-  <DicePrefabs>k__BackingField:
-  - {fileID: 8832856236650073278, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}
+  <BasicDicePrefab>k__BackingField: {fileID: 2545879115191340051, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}

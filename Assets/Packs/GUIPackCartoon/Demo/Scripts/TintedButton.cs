@@ -9,7 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace GUIPackCartoon.Demo.Scripts
+namespace Packs.GUIPackCartoon.Demo.Scripts
 {
     // This class is based on the official source code for Unity's UI Button (which can
     // be found here: https://bitbucket.org/Unity-Technologies/ui), but adds functionality

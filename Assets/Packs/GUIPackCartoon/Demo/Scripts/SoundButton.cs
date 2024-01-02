@@ -4,7 +4,7 @@
 
 using UnityEngine;
 
-namespace GUIPackCartoon.Demo.Scripts
+namespace Packs.GUIPackCartoon.Demo.Scripts
 {
     // This class represents the sound button that is used in several places in the demo.
     // It handles the logic to enable and disable the demo's sounds and store the player

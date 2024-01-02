@@ -1,6 +1,9 @@
 using UniRx;
 
-public interface IScoreProvider
+namespace User
 {
-    ReactiveProperty<int> Score { get; }
+    public interface IScoreProvider
+    {
+        ReactiveProperty<int> Score { get; }
+    }
 }

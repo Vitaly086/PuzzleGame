@@ -1,37 +1,40 @@
 ﻿using ConfigurationProviders;
 using UserProgress;
 
-/// <summary>
-/// Создает профиль игрока
-/// </summary>
-public class UserProfileService : IUserProfileService
+namespace User
 {
-    private readonly ProfileStorage _profileStorage;
-        
-    public UserProfileService(IConfigurationProvider configurationProvider)
+    /// <summary>
+    /// Создает профиль игрока
+    /// </summary>
+    public class UserProfileService : IUserProfileService
     {
-        _profileStorage = new ProfileStorage(configurationProvider);
-    }
+        private readonly ProfileStorage _profileStorage;
         
-    public UserProfile GetProfile()
-    {
-        UserProfile userProfile;
-            
-        if (_profileStorage.HasProgress())
+        public UserProfileService(IConfigurationProvider configurationProvider)
         {
-            userProfile = _profileStorage.GetLastUserProfile();
+            _profileStorage = new ProfileStorage(configurationProvider);
         }
-        else
+        
+        public UserProfile GetProfile()
         {
-            userProfile = new UserProfile();
-        }
+            UserProfile userProfile;
             
-        _profileStorage.StartTrackingChanges(userProfile);
-        return userProfile;
-    }
+            if (_profileStorage.HasProgress())
+            {
+                userProfile = _profileStorage.GetLastUserProfile();
+            }
+            else
+            {
+                userProfile = new UserProfile();
+            }
+            
+            _profileStorage.StartTrackingChanges(userProfile);
+            return userProfile;
+        }
 
-    public void Dispose()
-    {
-        _profileStorage.Dispose();
+        public void Dispose()
+        {
+            _profileStorage.Dispose();
+        }
     }
 }

@@ -1,6 +1,6 @@
 using UniRx;
 
-namespace Score
+namespace GameServices
 {
     public interface IScoreService
     {

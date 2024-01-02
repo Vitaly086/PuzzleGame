@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1b405b57bce41d5a1095e395c40a322, type: 3}
-  m_Name: DefaultDiceFacesSettings
+  m_Script: {fileID: 11500000, guid: d613d79250ab4af5a1bbba4ac65cff58, type: 3}
+  m_Name: DefaultDiceFacesConfig
   m_EditorClassIdentifier: 
+  <DicePrefab>k__BackingField: {fileID: 8832856236650073278, guid: dcf82e141e7c96049be73b6cae28538e, type: 3}
   <DiceFaces>k__BackingField:
   - <Value>k__BackingField: 1
   - <Value>k__BackingField: 2

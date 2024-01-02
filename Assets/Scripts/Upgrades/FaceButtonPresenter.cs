@@ -2,16 +2,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Кнопка одной грани - на ней актуальное количество точек
-/// </summary>
-public class FaceButtonPresenter : MonoBehaviour
+namespace Upgrades
 {
-    [field: SerializeField] public Button Button;
-    [SerializeField] private TextMeshProUGUI _valueLabel;
-
-    public void Initialize(int value)
+    /// <summary>
+    /// Кнопка одной грани - на ней актуальное количество точек
+    /// </summary>
+    public class FaceButtonPresenter : MonoBehaviour
     {
-        _valueLabel.text = value.ToString();
+        [field: SerializeField] public Button Button;
+        [SerializeField] private TextMeshProUGUI _valueLabel;
+
+        public void Initialize(int value)
+        {
+            _valueLabel.text = value.ToString();
+        }
     }
 }

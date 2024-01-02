@@ -449,12 +449,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dicePhysicSettings: {fileID: 11400000, guid: df92ebe4ad1524cad9d2ea3c41e571a0, type: 2}
-  _diceHandConfigProvider: {fileID: 11400000, guid: 5f0cbb43984f44f7592a5889e944d2d4, type: 2}
   _target: {fileID: 268083262}
   _diceFacesProvider: {fileID: 11400000, guid: 494ccd5de8f8046d58082250e2874490, type: 2}
-  _diceFacesSettings: {fileID: 11400000, guid: a115f349251e644d680f69db3763968c, type: 2}
   _spawnPoints: {fileID: 1669033080}
   _diceRoller: {fileID: 1100422532}
+  _dicePrefabLibrary: {fileID: 11400000, guid: 6477875b243dc44d3ba5c51fc723bb8c, type: 2}
 --- !u!4 &314425799
 Transform:
   m_ObjectHideFlags: 0
@@ -1783,8 +1782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044fb77a751f4a6083e817a590dd1193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushButton: {fileID: 1803842187}
-  _homeButton: {fileID: 1104170033}
   _scoreView: {fileID: 744127334}
 --- !u!4 &1541795924
 Transform:

@@ -4,7 +4,7 @@
 
 using UnityEngine;
 
-namespace GUIPackCartoon.Demo.Scripts
+namespace Packs.GUIPackCartoon.Demo.Scripts
 {
     // This class is responsible for fading the currently playing background music.
     public class MuteBackgroundMusic : MonoBehaviour

@@ -1,6 +1,7 @@
 ﻿using System;
 using ConfigurationProviders;
 using UniRx;
+using User;
 
 namespace UserProgress
 {

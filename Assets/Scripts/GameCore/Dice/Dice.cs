@@ -1,4 +1,5 @@
 ﻿using System;
+using GameCore.Settings;
 using UnityEngine;
 
 namespace GameCore.Dice
@@ -13,11 +14,13 @@ namespace GameCore.Dice
 
         private DiceFaces _diceFaces;
         private PhysicDice _physicDice;
-
-        public void Initialize()
+        
+        
+        public void Initialize(DiceFacesConfig diceFacesConfig, DiceFaceFactory faceFactory)
         {
             _diceFaces = GetComponent<DiceFaces>();
             _physicDice = GetComponent<PhysicDice>();
+            _diceFaces.Initialize(faceFactory, diceFacesConfig);
 
             _physicDice.Stopped += OnPhysicCubeStopped;
         }
@@ -31,7 +34,7 @@ namespace GameCore.Dice
 
         public int GetFaceValue(int faceIndex)
         {
-            return _diceFaces.DiceFacesSettings.GetValue(faceIndex);
+            return _diceFaces.FacesConfig[faceIndex];
         }
 
         private void OnPhysicCubeStopped()

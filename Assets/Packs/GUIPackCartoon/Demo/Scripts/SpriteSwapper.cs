@@ -5,7 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GUIPackCartoon.Demo.Scripts
+namespace Packs.GUIPackCartoon.Demo.Scripts
 {
     // Utility class for swapping the sprite of a UI Image between two predefined values.
     public class SpriteSwapper : MonoBehaviour

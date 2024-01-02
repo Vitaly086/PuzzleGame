@@ -1,5 +1,6 @@
 using System;
 using Events;
+using GameCore.Settings;
 using UnityEngine;
 using Zenject;
 
@@ -20,8 +21,7 @@ namespace GameCore.Dice
         private bool _isStopped;
 
         [Inject]
-        private void Construct(DiceFaceFactory faceFactory, DiceFacesSettings diceFacesSettings,
-            DicePhysicSettings dicePhysicSettings, ITarget target)
+        private void Construct(DiceFaceFactory faceFactory, DicePhysicSettings dicePhysicSettings, ITarget target)
         {
             _dicePhysicSettings = dicePhysicSettings;
             _target = target;

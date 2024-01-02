@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Zenject;
+using GameCore.Settings;
 using UnityEngine;
 
 namespace GameCore.Dice
@@ -9,15 +9,15 @@ namespace GameCore.Dice
     public class DiceFaces : MonoBehaviour
     {
         [field: SerializeField] public Transform[] FacesRoots { get; set; }
-        [field: SerializeField] public DiceFacesSettings DiceFacesSettings { get; set; }
+        public DiceFacesConfig FacesConfig { get; private set; }
         
-        private DiceFaceFactory _faceFactory;
+        private DiceFaceFactory _diceFaceFactory;
 
-        [Inject]
-        private void Construct(DiceFaceFactory faceFactory, DiceFacesSettings diceFacesSettings)
+        public void Initialize(DiceFaceFactory diceFaceFactory, DiceFacesConfig diceFacesConfig)
         {
-            _faceFactory = faceFactory;
-            CreateDiceFaces(diceFacesSettings.DiceFaces.Select(face => face.Value).ToArray());
+            _diceFaceFactory = diceFaceFactory;
+            FacesConfig = diceFacesConfig;
+            CreateDiceFaces(diceFacesConfig.DiceFaces.Select(face => face.Value).ToArray());
         }
 
         private void CreateDiceFaces(int[] diceFacesValues)
@@ -30,7 +30,7 @@ namespace GameCore.Dice
 
             for (int i = 0; i < FacesRoots.Length; i++)
             {
-                var diceFaceInstance = _faceFactory.GetFace(diceFacesValues[i]);
+                var diceFaceInstance = _diceFaceFactory.GetFace(diceFacesValues[i]);
                 diceFaceInstance.transform.SetParent(FacesRoots[i], worldPositionStays: false);
             }
         }

@@ -1,7 +1,10 @@
 ﻿using UniRx;
 
-public interface ILevelProvider
+namespace User
 {
-    ReactiveProperty<int> Level { get; }
-    ReactiveProperty<int> RollsCount { get; }
+    public interface ILevelProvider
+    {
+        ReactiveProperty<int> Level { get; }
+        ReactiveProperty<int> RollsCount { get; }
+    }
 }

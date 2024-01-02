@@ -1,21 +1,32 @@
 using System;
 using System.Collections.Generic;
-using GameCore.Dice;
-using UnityEngine;
+using GameCore.DiceDatas;
+using GameCore.Settings;
 
-[Serializable] // Потом убрать
-public class HandWithDices
+namespace GameCore.Dice
 {
-    // TODO: Надо хранить кубики в префсах и на старте сетить сюда кубики с актуальными характеристиками
-    [SerializeField] private List<DiceFacesSettings> Dices;
+    public class HandWithDices : IDisposable
+    {
+        public IReadOnlyList<DiceFacesConfig> Dices => _dices;
+        private readonly DiceDataManager _diceDataManager;
+        private readonly List<DiceFacesConfig> _dices;
 
-    public List<DiceFacesSettings> GetDices()
-    {
-        return Dices;
-    }
-        
-    public void AddDice()
-    {
-        // TODO: Добавляем 1 кубик - для каждого кубика сетятся дефолтные настройки
+        public HandWithDices(DiceDataManager diceDataManager)
+        {
+            _diceDataManager = diceDataManager;
+            _dices = diceDataManager.DiceFacesConfigs;
+        }
+
+        public DiceFacesConfig AddNewDice()
+        {
+            var newDiceSettings = _diceDataManager.CreateDefaultDiceSettings();
+            _dices.Add(newDiceSettings);
+            return newDiceSettings;
+        }
+
+        public void Dispose()
+        {
+            _diceDataManager.SaveDices(_dices);
+        }
     }
 }

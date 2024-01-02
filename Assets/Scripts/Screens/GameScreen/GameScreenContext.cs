@@ -1,4 +1,4 @@
-using Score;
+using GameServices;
 
 namespace Screens.GameScreen
 {

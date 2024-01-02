@@ -1,9 +1,11 @@
 using Events;
+using GameServices;
 using IngameStateMachine;
-using Score;
+using LevelsSettings;
 using ScreenManager.Core;
 using Screens.GameScreen;
 using SimpleEventBus.Disposables;
+using User;
 
 namespace GameStates
 {

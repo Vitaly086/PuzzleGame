@@ -1,42 +1,54 @@
 using System;
 using GameCore.Dice;
+using GameCore.DiceDatas;
+using GameCore.Settings;
 using UnityEngine;
 
-/// <summary>
-/// Первое окно магазина - в котором все кубики и покупка кубика
-/// </summary>
-public class DiceHandPresenter : MonoBehaviour
+namespace Upgrades
 {
-    public event Action<DiceButtonPresenter> DiceButtonCreated; 
-    [SerializeField] private Transform _root;
-    [SerializeField] private DiceFacesSettings _defaultSettings;
-    [SerializeField] private DiceButtonPresenter _diceButtonPrefab;
-    private HandWithDices _handWithDices;
-    private DiceButtonPresenter _creationNewDiceButton;
-    
-    public void Initialize(HandWithDices handWithDices)
+    /// <summary>
+    /// Первое окно магазина - в котором все кубики и покупка кубика
+    /// </summary>
+    public class DiceHandPresenter : MonoBehaviour
     {
-        _handWithDices = handWithDices;
-        var dicesSettings = handWithDices.GetDices();
-        for (var i = 0; i < dicesSettings.Count; i++)
+        public event Action<DiceButtonPresenter> DiceButtonCreated;
+        [SerializeField] private Transform _root;
+        [SerializeField] private DiceButtonPresenter _diceButtonPrefab;
+        private HandWithDices _handWithDices;
+        private DiceButtonPresenter _creationNewDiceButton;
+        
+        public void Initialize(HandWithDices handWithDices, DiceDataManager diceDataManager)
         {
-            var diceButton = Instantiate(_diceButtonPrefab, _root);
-            diceButton.Initialize(dicesSettings[i], (i + 1).ToString());
-            DiceButtonCreated?.Invoke(diceButton);
+            _handWithDices = handWithDices;
+            var dicesSettings = handWithDices.Dices;
+            for (var i = 0; i < dicesSettings.Count; i++)
+            {
+               CreateDiceButton(dicesSettings[i], (i + 1).ToString());
+            }
+        
+            _creationNewDiceButton = Instantiate(_diceButtonPrefab, _root);
+            var defaultDiceSettings = diceDataManager.CreateDefaultDiceSettings();
+            _creationNewDiceButton.Initialize(defaultDiceSettings, "+");
+            _creationNewDiceButton.Button.onClick.AddListener(AddDiceToHand);
+        }
+
+        private void AddDiceToHand()
+        {
+            var newDiceSettings = _handWithDices.AddNewDice();
+            CreateDiceButton(newDiceSettings, _handWithDices.Dices.Count.ToString());
+            _creationNewDiceButton.transform.SetAsLastSibling();
         }
         
-        _creationNewDiceButton = Instantiate(_diceButtonPrefab, _root);
-        _creationNewDiceButton.Initialize(_defaultSettings, "+");
-        _creationNewDiceButton.Button.onClick.AddListener(AddDiceToHand);
-    }
+        private void CreateDiceButton(DiceFacesConfig diceSettings, string label)
+        {
+            var diceButton = Instantiate(_diceButtonPrefab, _root);
+            diceButton.Initialize(diceSettings, label);
+            DiceButtonCreated?.Invoke(diceButton);
+        }
 
-    private void AddDiceToHand()
-    {
-        _handWithDices.AddDice();
-    }
-
-    private void OnDisable()
-    {
-        _creationNewDiceButton.Button.onClick.RemoveListener(AddDiceToHand);
+        private void OnDisable()
+        {
+            _creationNewDiceButton.Button.onClick.RemoveListener(AddDiceToHand);
+        }
     }
 }

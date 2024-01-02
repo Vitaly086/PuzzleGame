@@ -1,20 +1,23 @@
-using GameCore.Dice;
+using GameCore.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Кнопка одного кубика первого окна магазина
-/// </summary>
-public class DiceButtonPresenter : MonoBehaviour
+namespace Upgrades
 {
-    [field: SerializeField] public Button Button;
-    [SerializeField] private TextMeshProUGUI _titleLabel;
-    public DiceFacesSettings DiceFacesSettings { get; private set; }
-
-    public void Initialize(DiceFacesSettings diceFacesSettings, string title)
+    /// <summary>
+    /// Кнопка одного кубика первого окна магазина
+    /// </summary>
+    public class DiceButtonPresenter : MonoBehaviour
     {
-        _titleLabel.text = title;
-        DiceFacesSettings = diceFacesSettings;
+        [field: SerializeField] public Button Button;
+        [SerializeField] private TextMeshProUGUI _titleLabel;
+        public DiceFacesConfig DiceFacesConfig { get; private set; }
+
+        public void Initialize(DiceFacesConfig diceFacesConfig, string title)
+        {
+            _titleLabel.text = title;
+            DiceFacesConfig = diceFacesConfig;
+        }
     }
 }
