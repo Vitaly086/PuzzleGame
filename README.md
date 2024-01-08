@@ -15,4 +15,5 @@ Welcome to the game "Roll"! This is an endless dice rolling game where players a
 
 
 ## Video
-[![Roll Game Prototype Gameplay](http://img.youtube.com/vi/UqVaWMc2RCE/0.jpg)](https://youtu.be/UqVaWMc2RCE "Roll Game Prototype Gameplay")
+https://github.com/Vitaly086/RollGame/assets/93872632/b9984801-51a6-4aff-884a-81a99db873e6
+
